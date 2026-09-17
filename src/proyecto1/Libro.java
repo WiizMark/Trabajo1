@@ -17,6 +17,7 @@ public class Libro {
         this.autor = autor;
         this.precio = precio;
         this.stock = stock;
+        String prueba = "lala";
     }
     
     
