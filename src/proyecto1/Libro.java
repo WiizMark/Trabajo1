@@ -2,21 +2,21 @@ package proyecto1;
 
 public class Libro {
     protected String id;
-    protected String nombre;
+    protected String titulo;
     protected String autor;
     protected double precio;
     protected int stock;
 
-    public Libro(String id, String nombre, String autor, double precio, int stock) {
+    public Libro(String id, String titulo, String autor, double precio, int stock) {
         this.id = id;
-        this.nombre = nombre;
+        this.titulo = titulo;
         this.autor = autor;
         this.precio = precio;
         this.stock = stock;
     }
     
-    public Libro(String nombre, String autor, double precio, int stock) {
-        this.nombre = nombre;
+    public Libro(String titulo, String autor, double precio, int stock) {
+        this.titulo = titulo;
         this.autor = autor;
         this.precio = precio;
         this.stock = stock;
@@ -33,12 +33,12 @@ public class Libro {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getAutor() {
@@ -67,7 +67,7 @@ public class Libro {
 
     @Override
     public String toString() {
-        return "Libro{" + "id=" + id + ", nombre=" + nombre + ", autor=" + autor + ", precio=" + precio + ", stock=" + stock + '}';
+        return "Libro{" + "id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", precio=" + precio + ", stock=" + stock + '}';
     }
         
     
