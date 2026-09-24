@@ -5,6 +5,7 @@
 package proyecto1;
 import java.util.List;
 import java.util.Scanner;
+import proyecto1.Libro;
 
 /**
  *
