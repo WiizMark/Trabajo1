@@ -26,17 +26,14 @@ String sql = "INSERT INTO facturas(id_cliente, id_veterinario, id_mascota, fecha
 		try (Connection con = LibroRepositoryMySQL.getConnection();
 				PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 			ps.setString(1, objeto.getTitulo());
-			ps.setInt(2, objeto.getIdVeterinario());
-			ps.setInt(3, objeto.getIdMascota());
-			ps.setString(4, objeto.getFecha());
-			ps.setDouble(5, objeto.getSubtotal());
-			ps.setDouble(6, objeto.getTotalIva());
-			ps.setDouble(7, objeto.getTotal());
+			ps.setString(2, objeto.getAutor());
+			ps.setInt(3, objeto.getStock());
+			
 			int filas = ps.executeUpdate();
 			if (filas > 0) {
 				ResultSet rs = ps.getGeneratedKeys();
 				if (rs.next()) {
-					objeto.setIdFactura(rs.getInt(1));
+					objeto.setId(rs.getString(1));
 				}
 				return true;
 			}
