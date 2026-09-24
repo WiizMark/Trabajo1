@@ -33,10 +33,14 @@ public class LibroRepositoryArchivo implements LibroRepository<Object> {
     }
     
     private Libro mapear(ResultSet rs) throws SQLException {
-		return new Libro(
-				
-		);
-	}
+      return new Libro(
+          rs.getString("id"),
+          rs.getString("nombre"),
+          rs.getString("autor"),
+          rs.getDouble("precio"),
+          rs.getInt("stock")
+      );
+  }
 
 
 }
