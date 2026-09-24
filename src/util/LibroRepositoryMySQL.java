@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class LibroRepositoryMySQL {
-    public class ConexionBD {
+    public class LibroRepositoryMySQL {
 
 
 	private static final String URL = "jdbc:mysql://localhost:3306/interfaces";
@@ -22,5 +21,4 @@ public class LibroRepositoryMySQL {
 		}
 		return con;
 	}
-}
 }

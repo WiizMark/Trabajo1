@@ -5,31 +5,32 @@ import proyecto1.LibroRepository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-public class LibroRepositoryArchivo implements LibroRepository<Object> {
+
+public class LibroRepositoryArchivo implements LibroRepository<T> {
 
     @Override
     public boolean insertar(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public List<Object> obtenerTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Object obtenerPorId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean actualizar(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public boolean eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
     
     private Libro mapear(ResultSet rs) throws SQLException {
@@ -41,6 +42,5 @@ public class LibroRepositoryArchivo implements LibroRepository<Object> {
           rs.getInt("stock")
       );
   }
-
-
+    
 }
