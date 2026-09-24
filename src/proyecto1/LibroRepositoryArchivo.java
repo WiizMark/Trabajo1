@@ -19,35 +19,6 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
       );
   }
 
-<<<<<<< HEAD
-    @Override
-    public boolean insertar(Libro objeto) {
-String sql = "INSERT INTO facturas(id_cliente, id_veterinario, id_mascota, fecha, subtotal, total_iva, total) "
-				+ "VALUES(?,?,?,?,?,?,?)";
-		try (Connection con = LibroRepositoryMySQL.getConnection();
-				PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-			ps.setString(1, objeto.getTitulo());
-			ps.setString(2, objeto.getAutor());
-			ps.setInt(3, objeto.getStock());
-			
-			int filas = ps.executeUpdate();
-			if (filas > 0) {
-				ResultSet rs = ps.getGeneratedKeys();
-				if (rs.next()) {
-					objeto.setId(rs.getString(1));
-				}
-				return true;
-			}
-			return false;
-		} catch (SQLException e) {
-			System.out.println("Error insertando factura: " + e.getMessage());
-			return false;
-		}    }
-
-    @Override
-    public List<Libro> obtenerTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-=======
   @Override
     public boolean insertar(Libro libro) {
         String sql = "INSERT INTO libros(id, titulo, autor, precio, stock) VALUES(?, ?, ?, ?, ?)";
@@ -63,7 +34,6 @@ String sql = "INSERT INTO facturas(id_cliente, id_veterinario, id_mascota, fecha
             System.out.println("Error insertando libro en MySQL: " + e.getMessage());
             return false;
         }
->>>>>>> 88500716bea189286df40f4a63c65fe008880a94
     }
     
 @Override
@@ -85,7 +55,7 @@ String sql = "INSERT INTO facturas(id_cliente, id_veterinario, id_mascota, fecha
     
     @Override
     public Libro obtenerPorId(int id) {
-        String sql = "SELECT * FROM libros WHERE id = ?";
+        String sql = "SELECT id,titulo,autor,precio,stock FROM libros WHERE id = ?";
         try (Connection con = util.LibroRepositoryMySQL.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             
