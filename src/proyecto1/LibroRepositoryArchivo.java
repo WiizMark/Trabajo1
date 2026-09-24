@@ -55,7 +55,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
     
     @Override
     public Libro obtenerPorId(int id) {
-        String sql = "SELECT * FROM libros WHERE id = ?";
+        String sql = "SELECT id,titulo,autor,precio,stock FROM libros WHERE id = ?";
         try (Connection con = util.LibroRepositoryMySQL.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             
