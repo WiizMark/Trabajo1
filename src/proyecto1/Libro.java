@@ -1,9 +1,5 @@
 package proyecto1;
 
-/**
- *
- * @author Marcos
- */
 public class Libro {
     protected String id;
     protected String nombre;
