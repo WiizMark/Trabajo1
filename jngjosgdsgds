@@ -1,0 +1,182 @@
+[33mcommit 8f5862e259edd14c75b7be57c81ebf0bbda5b214[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: d772e26 8d4d27d
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 20:11:25 2026 +0200
+
+    Merge branch 'main' of https://github.com/WiizMark/Trabajo1
+
+[33mcommit d772e26f26b7f81846eaedf53be7c190ca2b23c5[m
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 20:02:03 2026 +0200
+
+    fututusssl
+
+[33mcommit fcd40483f6d6e5d89c9630974a31dd22963f041d[m
+Merge: cd487f6 8850071
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 20:00:33 2026 +0200
+
+    fututul
+
+[33mcommit 8d4d27d9a9472efbe59eebc4acf22bf4cea99fff[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 24 19:55:36 2026 +0200
+
+    intento1
+
+[33mcommit cd487f644a700b1ea72808db231c81c88c1ecb8d[m
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 19:51:51 2026 +0200
+
+    fututu
+
+[33mcommit 88500716bea189286df40f4a63c65fe008880a94[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 24 19:49:46 2026 +0200
+
+    cambiosenlibrorepositoryarchivoporfin
+
+[33mcommit e8229d7228b19e4aa06accc2519ef6b70df9c225[m
+Merge: 7393e98 d76256d
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 19:41:04 2026 +0200
+
+    subo el libro repository, no funciona bien
+
+[33mcommit d76256d98bb3dfd9d957507b03da80cddf8b1ff1[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 24 19:31:35 2026 +0200
+
+    cambios sin el de archivos
+
+[33mcommit 7393e985bc399ebf9af9b26c9eefc9ca36d11ae4[m
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 19:30:19 2026 +0200
+
+    reset
+
+[33mcommit 8212cc887689aedac1d40a80f6169156f1514360[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 24 19:15:23 2026 +0200
+
+    cambios
+
+[33mcommit 2aa17c10366383816b6b718060e82d80d74f5a2a[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 24 18:58:08 2026 +0200
+
+    correcion en librorepositorymysql
+
+[33mcommit 1f00b6fadf39dda24143a46dbb206b3598287544[m
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 18:48:13 2026 +0200
+
+    mapearentero
+
+[33mcommit d628634c5c2f27ac3c1c084f54b97c19a5856c79[m
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 18:43:39 2026 +0200
+
+    funcionacasix
+
+[33mcommit f0b765ce25dbe5cdeea685adcd17e83faf70f1f9[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 24 18:38:25 2026 +0200
+
+    select para los daos
+
+[33mcommit 2fdf05c4e9c6cf989499e966331e45d6d7ab518a[m
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 18:34:03 2026 +0200
+
+    DAO
+
+[33mcommit fe15c80344647f21e9ba7d50a0079485e0202516[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 24 18:25:09 2026 +0200
+
+    cambios
+
+[33mcommit 0bcc5f42eb481a4a6a7cbd49de8fcd744e1c6b44[m
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 18:19:24 2026 +0200
+
+    ARREGLANDO
+
+[33mcommit c6832cef24214f5709091827ea6a63a66c58c703[m
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 24 18:09:23 2026 +0200
+
+    Mainv5
+
+[33mcommit 69394f1edfbabcb08c0d6d76e8f604f9795d03bc[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Mon Sep 21 16:39:37 2026 +0200
+
+    libro completo
+
+[33mcommit 4db61e3accc0fcbc4f000d1b148470a1eb5997f2[m
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Mon Sep 21 16:32:05 2026 +0200
+
+    Main
+
+[33mcommit a85da7d02e8b3739363afbb6d85b800a00b860a1[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Mon Sep 21 16:31:09 2026 +0200
+
+    cambio bd
+
+[33mcommit 35388183193af194ba5e9d69dc161e14a23872de[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Mon Sep 21 16:13:08 2026 +0200
+
+    conexionbd commit
+
+[33mcommit cdde6eac6132090984cb9a3787745638075a8662[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Mon Sep 21 16:04:59 2026 +0200
+
+    ConexionBD cambiada
+
+[33mcommit 48e9d5e8e81f6be4f36edcac2b9eb92ecef90ee1[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Mon Sep 21 16:02:46 2026 +0200
+
+    ConexionBD añadida
+
+[33mcommit a3ae3b56e3e6f7b78ba3b859b532e6a90c33883f[m
+Author: roterfile81 <prologuefile@gmail.com>
+Date:   Thu Sep 17 20:10:41 2026 +0200
+
+    commit nabil prueba
+
+[33mcommit d78d04bbc3fa3c31acffb20be930b7dd3640f7cb[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 17 20:07:52 2026 +0200
+
+    cuarto commit
+
+[33mcommit ae570295c80f08ad7094afc7d278266056dc3430[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 17 19:52:19 2026 +0200
+
+    tercer commit
+
+[33mcommit fd7270598107b347acbc4b237ccc4fd3630ad8df[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 17 19:43:40 2026 +0200
+
+    segundo commit
+
+[33mcommit c0cb4ec2c3657eeecdd482a35747569c7d580743[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 17 19:41:21 2026 +0200
+
+    mi primer commit
+
+[33mcommit 02c88f2e2960568cc5541d274908f77075f177f6[m
+Author: WiizMark <marcosdos.md@gmail.com>
+Date:   Thu Sep 17 19:37:29 2026 +0200
+
+    first commit
