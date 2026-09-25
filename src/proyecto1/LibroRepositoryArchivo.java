@@ -24,7 +24,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
             System.out.println("Error insertando libro en MySQL: " + e.getMessage());
             return false;
         }
-    }
+}
     
     @Override
         public List<Libro> obtenerTodos() {
@@ -41,7 +41,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
                 System.out.println("Error al obtener todos: " + e.getMessage());
             }
             return lista;
-        }
+}
     
     @Override
     public Libro obtenerPorId(int id) {
@@ -59,7 +59,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
             System.out.println("Error al obtener por id: " + e.getMessage());
         }
         return null;
-    }
+}
     
     public Libro obtenerPorTitulo(String titulo) {
         String sql = "SELECT id, titulo, autor, precio, stock FROM libros where titulo = ?";
@@ -76,7 +76,8 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
             System.out.println("Error al obtener por id: " + e.getMessage());
         }
         return null;
-    }
+}
+    
         public Libro obtenerPorAutor(String autor) {
         String sql = "SELECT id, titulo, autor, precio, stock from libros where autor = ?";
         try (Connection con = util.LibroRepositoryMySQL.getConnection();
@@ -92,7 +93,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
             System.out.println("Error al obtener por id: " + e.getMessage());
         }
         return null;
-    }
+}
                
     @Override
         public boolean actualizar(Libro libro) {
@@ -111,7 +112,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
                 System.out.println("Error al actualizar: " + e.getMessage());
                 return false;
             }
-        }
+}
 
     @Override
         public boolean eliminar(int id) {
@@ -125,7 +126,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
                 System.out.println("Error al eliminar: " + e.getMessage());
                 return false;
             }
-        }
+}
         
         public List<Libro> buscarPorRangoPrecio(double min, double max) {
             List<Libro> lista = new ArrayList<>();
@@ -162,6 +163,20 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
                 System.out.println("Error buscando por stock: " + e.getMessage());
             }
             return lista;
+}
+        
+        public boolean eliminarPorTitulo(String titulo) {
+            String sql = "DELETE FROM libros WHERE titulo = ?";
+            try (Connection con = util.LibroRepositoryMySQL.getConnection();
+                 PreparedStatement ps = con.prepareStatement(sql)) {
+
+                ps.setString(1, titulo);
+                return ps.executeUpdate() > 0;
+
+            } catch (SQLException e) {
+                System.out.println("Error al eliminar libro por título: " + e.getMessage());
+                return false;
+            }
 }
         
     private Libro mapear(ResultSet rs) throws SQLException {

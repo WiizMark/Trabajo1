@@ -2,10 +2,6 @@ package proyecto1;
 
 import java.util.List;
 
-/**
- *
- * @author 2DAM
- */
 public interface LibroRepository<T> {
         boolean insertar(T objeto);
 	List<T> obtenerTodos();
