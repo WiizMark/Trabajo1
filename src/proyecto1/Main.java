@@ -28,6 +28,7 @@ public class Main {
             opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
                 case 1:
+                   mostrarTodo();
 
                     break;
                 case 2:
