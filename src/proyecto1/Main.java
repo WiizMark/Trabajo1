@@ -3,11 +3,12 @@ package proyecto1;
 import java.util.List;
 import java.util.Scanner;
 import proyecto1.Libro;
+import proyecto1.LibroRepositoryArchivo;
 
 public class Main {
 
     static Scanner sc = new Scanner(System.in);
-
+    static LibroRepositoryArchivo LibroDAO = new LibroRepositoryArchivo();
     public static void main(String[] args) {
 
         int opcion;
@@ -49,6 +50,19 @@ public class Main {
                     break;
             }
         } while (opcion != 0);
+        
+    }
+    
+    public static void mostrarTodo(){
+         List<Libro> libros = LibroDAO.obtenerTodos();
+        if (libros.isEmpty()) {
+            System.out.println("No hay libros disponibles.");
+        } else {
+            for (Libro libro : libros) {
+                System.out.println(libro);
+            }
+        }
+       
     }
 
 }
