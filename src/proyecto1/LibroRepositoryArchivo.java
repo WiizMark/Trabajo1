@@ -20,11 +20,30 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
                   ps.setInt(4, libro.getStock());
               return ps.executeUpdate() > 0;
 
+<<<<<<< HEAD
           } catch (SQLException e) {
               System.out.println("Error insertando libro en MySQL: " + e.getMessage());
               return false;
           }
       }
+=======
+  @Override
+    public boolean insertar(Libro libro) {
+        String sql = "INSERT INTO libros(titulo, autor, precio, stock) VALUES(?, ?, ?, ?)";
+        try (Connection con = util.LibroRepositoryMySQL.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+                ps.setString(1, libro.getTitulo());
+                ps.setString(2, libro.getAutor());
+                ps.setDouble(3, libro.getPrecio());
+                ps.setInt(4, libro.getStock());
+            return ps.executeUpdate() > 0;
+            
+        } catch (SQLException e) {
+            System.out.println("Error insertando libro en MySQL: " + e.getMessage());
+            return false;
+        }
+    }
+>>>>>>> 0c7b59ab4f61191b6454b112e2def732c3e88b4c
     
     @Override
         public List<Libro> obtenerTodos() {
