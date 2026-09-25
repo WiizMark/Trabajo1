@@ -54,6 +54,8 @@ public class Main {
         
     }
     
+
+    
     public static void mostrarTodo(){
          List<Libro> libros = LibroDAO.obtenerTodos();
         if (libros.isEmpty()) {
@@ -61,6 +63,8 @@ public class Main {
         } else {
             for (Libro libro : libros) {
                 System.out.println(libro);
+                                System.out.println("No hay libros disponibles.");
+
             }
         }
        
