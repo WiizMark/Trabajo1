@@ -21,7 +21,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
 
   @Override
     public boolean insertar(Libro libro) {
-        String sql = "INSERT INTO libros(id, titulo, autor, precio, stock) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO libros(titulo, autor, precio, stock) VALUES(?, ?, ?, ?)";
         try (Connection con = util.LibroRepositoryMySQL.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
                 ps.setString(1, libro.getTitulo());
