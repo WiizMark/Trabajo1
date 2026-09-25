@@ -8,8 +8,7 @@ import java.util.List;
 
 public class LibroRepositoryArchivo implements LibroRepository<Libro> {
 
-    
-
+  
     @Override
       public boolean insertar(Libro libro) {
           String sql = "INSERT INTO libros(id, titulo, autor, precio, stock) VALUES(?, ?, ?, ?, ?)";
