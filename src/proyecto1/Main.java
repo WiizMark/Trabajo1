@@ -10,6 +10,8 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     static LibroRepositoryArchivo LibroDAO = new LibroRepositoryArchivo();
     public static void main(String[] args) {
+        
+        System.out.println("proyecto1.Main.main()");
 
         int opcion;
         do {
@@ -28,7 +30,12 @@ public class Main {
             opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
                 case 1:
+<<<<<<< HEAD
                      mostrarTodo();
+=======
+                   mostrarTodo();
+
+>>>>>>> 010eac1621e93b50d7e1a947d950640d99be2daf
                     break;
                 case 2:
 
@@ -53,6 +60,11 @@ public class Main {
         
     }
     
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> 010eac1621e93b50d7e1a947d950640d99be2daf
     public static void mostrarTodo(){
          List<Libro> libros = LibroDAO.obtenerTodos();
         if (libros.isEmpty()) {
@@ -60,6 +72,10 @@ public class Main {
         } else {
             for (Libro libro : libros) {
                 System.out.println(libro);
+<<<<<<< HEAD
+=======
+                
+>>>>>>> 010eac1621e93b50d7e1a947d950640d99be2daf
             }
         }
        
