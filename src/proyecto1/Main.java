@@ -10,6 +10,8 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
     static LibroRepositoryArchivo LibroDAO = new LibroRepositoryArchivo();
     public static void main(String[] args) {
+        
+        System.out.println("proyecto1.Main.main()");
 
         int opcion;
         do {
@@ -63,8 +65,7 @@ public class Main {
         } else {
             for (Libro libro : libros) {
                 System.out.println(libro);
-                                System.out.println("No hay libros disponibles.");
-
+                
             }
         }
        
