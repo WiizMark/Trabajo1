@@ -9,24 +9,6 @@ import java.util.List;
 public class LibroRepositoryArchivo implements LibroRepository<Libro> {
 
   
-    @Override
-      public boolean insertar(Libro libro) {
-          String sql = "INSERT INTO libros(id, titulo, autor, precio, stock) VALUES(?, ?, ?, ?, ?)";
-          try (Connection con = util.LibroRepositoryMySQL.getConnection();
-               PreparedStatement ps = con.prepareStatement(sql)) {
-                  ps.setString(1, libro.getTitulo());
-                  ps.setString(2, libro.getAutor());
-                  ps.setDouble(3, libro.getPrecio());
-                  ps.setInt(4, libro.getStock());
-              return ps.executeUpdate() > 0;
-
-<<<<<<< HEAD
-          } catch (SQLException e) {
-              System.out.println("Error insertando libro en MySQL: " + e.getMessage());
-              return false;
-          }
-      }
-=======
   @Override
     public boolean insertar(Libro libro) {
         String sql = "INSERT INTO libros(titulo, autor, precio, stock) VALUES(?, ?, ?, ?)";
@@ -43,7 +25,6 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
             return false;
         }
     }
->>>>>>> 0c7b59ab4f61191b6454b112e2def732c3e88b4c
     
     @Override
         public List<Libro> obtenerTodos() {
@@ -67,7 +48,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
         String sql = "SELECT id,titulo,autor,precio,stock FROM libros WHERE id = ?";
         try (Connection con = util.LibroRepositoryMySQL.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            
+
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
