@@ -11,7 +11,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
   
   @Override
     public boolean insertar(Libro libro) {
-        String sql = "INSERT INTO libros(titulo, autor, precio, stock) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO libros(titulo, autor, precio, stock) values(?, ?, ?, ?)";
         try (Connection con = util.LibroRepositoryMySQL.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
                 ps.setString(1, libro.getTitulo());
@@ -29,7 +29,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
     @Override
         public List<Libro> obtenerTodos() {
             List<Libro> lista = new ArrayList<>();
-            String sql = "SELECT id, titulo, autor, precio, stock FROM libros";
+            String sql = "SELECT id, titulo, autor, precio, stock from libros";
             try (Connection con = util.LibroRepositoryMySQL.getConnection();
                  PreparedStatement ps = con.prepareStatement(sql);
                  ResultSet rs = ps.executeQuery()) {
@@ -45,7 +45,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
     
     @Override
     public Libro obtenerPorId(int id) {
-        String sql = "SELECT id,titulo,autor,precio,stock FROM libros WHERE id = ?";
+        String sql = "SELECT id,titulo,autor,precio,stock FROM libros where id = ?";
         try (Connection con = util.LibroRepositoryMySQL.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
@@ -62,7 +62,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
     }
     
     public Libro obtenerPorTitulo(String titulo) {
-        String sql = "SELECT id, titulo, autor, precio, stock FROM libros WHERE titulo = ?";
+        String sql = "SELECT id, titulo, autor, precio, stock FROM libros where titulo = ?";
         try (Connection con = util.LibroRepositoryMySQL.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             
@@ -78,7 +78,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
         return null;
     }
         public Libro obtenerPorAutor(String autor) {
-        String sql = "SELECT id, titulo, autor, precio, stock FROM libros WHERE autor = ?";
+        String sql = "SELECT id, titulo, autor, precio, stock from libros where autor = ?";
         try (Connection con = util.LibroRepositoryMySQL.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             
@@ -96,7 +96,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
                
     @Override
         public boolean actualizar(Libro libro) {
-            String sql = "UPDATE libros SET titulo = ?, autor = ?, precio = ?, stock = ? WHERE id = ?";
+            String sql = "UPDATE libros set titulo = ?, autor = ?, precio = ?, stock = ? where id = ?";
             try (Connection con = util.LibroRepositoryMySQL.getConnection();
                  PreparedStatement ps = con.prepareStatement(sql)) {
 
@@ -115,7 +115,7 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
 
     @Override
         public boolean eliminar(int id) {
-            String sql = "DELETE FROM libros WHERE id = ?";
+            String sql = "DELETE from libros where id = ?";
             try (Connection con = util.LibroRepositoryMySQL.getConnection();
                  PreparedStatement ps = con.prepareStatement(sql)) {
 
@@ -126,7 +126,44 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
                 return false;
             }
         }
+        
+        public List<Libro> buscarPorRangoPrecio(double min, double max) {
+            List<Libro> lista = new ArrayList<>();
+            String sql = "SELECT id, titulo, autor, precio, stock from libros WHERE precio BETWEEN ? AND ?";
+            try (Connection con = util.LibroRepositoryMySQL.getConnection();
+                 PreparedStatement ps = con.prepareStatement(sql)) {
 
+                ps.setDouble(1, min);
+                ps.setDouble(2, max);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        lista.add(mapear(rs));
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println("Error buscando por precio: " + e.getMessage());
+            }
+            return lista;
+}       
+        
+        public List<Libro> buscarPorStockMinimo(int stock) {
+            List<Libro> lista = new ArrayList<>();
+            String sql = "SELECT id, titulo, autor, precio, stock from libros where stock >= ?";
+            try (Connection con = util.LibroRepositoryMySQL.getConnection();
+                 PreparedStatement ps = con.prepareStatement(sql)) {
+
+                ps.setInt(1, stock);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        lista.add(mapear(rs));
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println("Error buscando por stock: " + e.getMessage());
+            }
+            return lista;
+}
+        
     private Libro mapear(ResultSet rs) throws SQLException {
         return new Libro(
             rs.getString("id"),
