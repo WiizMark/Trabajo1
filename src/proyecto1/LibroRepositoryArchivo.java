@@ -70,8 +70,24 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
 
     @Override
     public boolean insertar(Libro objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+List<Libro> libros = mostrarLibros();
+        for (int i = 0; i < libros.size(); i++) {
+            if (libros.get(i).getId().equals(objeto.getId())) {
+                System.out.println("Ya existe un libro con el id " + objeto.getId());
+                return false;
+            }
+        }
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true));
+            bw.write(libroALinea(objeto));
+            bw.newLine();
+            bw.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            return false;
+        }    }
 
     @Override
     public List<Libro> buscarPorCantidadStock(int stockMinimo) {
@@ -87,6 +103,32 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
     public void CopiarArchivos() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
+    
+     public boolean guardarLibros(List<Libro> libros) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+            for (int i = 0; i < libros.size(); i++) {
+                bw.write(libroALinea(libros.get(i)));
+                bw.newLine();
+            }
+            bw.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            return false;
+        }
+    }
+    
+     private String libroALinea(Libro objeto) {
+        return objeto.getId() + espacio
+                + objeto.getTitulo() + espacio
+                + objeto.getAutor() + espacio
+                + objeto.getPrecio() + espacio
+                + objeto.getStock();
+    }
+
+     
     private Libro mapear(String linea) {
 
         String[] campos = linea.split("\\" + espacio);
