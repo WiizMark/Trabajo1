@@ -11,8 +11,16 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
 
     @Override
     public List<Libro> obtenerPorTitulo(String titulo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        List<Libro> libros = mostrarLibros();
+        List<Libro> resultado = new ArrayList<>();
+
+        for (int i = 0; i < libros.size(); i++) {
+            Libro libro = libros.get(i);
+            if (libro.getTitulo().equalsIgnoreCase(titulo)) {
+                resultado.add(libro);
+            }
+        }
+        return resultado;    }
 
     @Override
     public List<Libro> buscarPorAutor(String autor) {
