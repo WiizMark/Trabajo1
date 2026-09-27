@@ -22,5 +22,4 @@ public class LibroRepositoryMySQL {
         }
         return con;
     }
-    a
 }
