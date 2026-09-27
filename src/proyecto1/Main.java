@@ -1,17 +1,40 @@
 package proyecto1;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 import proyecto1.Libro;
+import proyecto1.LibroRepository;
 import proyecto1.LibroRepositoryArchivo;
+import proyecto1.LibroRepositoryMySQL;
 
 public class Main {
 
-    static Scanner sc = new Scanner(System.in);
-    static LibroRepositoryArchivo LibroDAO = new LibroRepositoryArchivo();
-
     public static void main(String[] args) {
-        
+          Scanner sc;
+        sc = new Scanner(System.in).useLocale(Locale.US);
+
+        LibroRepository<Libro> reposi;
+
+        System.out.println("""
+                           Elige con cual quieres trabajar?
+                           1. Archivo de texto
+                           2. Base de datos MySQL""");
+        System.out.print("Opcion: ");
+        int tipo = sc.nextInt();
+        sc.nextLine();
+
+        if (tipo == 1) {
+            reposi = new LibroRepositoryMySQL();
+            System.out.println("Base de datos MySQL.");
+        } else if (tipo == 2) {
+            reposi = new LibroRepositoryArchivo();
+            System.out.println("Achivo de texto.");
+        } else {
+            System.out.println("No disponible.");
+            sc.close();
+            return;
+        }
         int opcion;
         do {
             System.out.println("\n--- MENÚ ---");
@@ -27,156 +50,37 @@ public class Main {
 
             opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
-                case 1:
-                    mostrarTodo();
-                    break;
-                case 2:
-                    buscarPorTitulo();
-
-                    break;
-                case 3:
-                    buscarPorAutor();
-
-                    break;
-                case 4:
-                    buscarPorRangoPrecio();
-
-                    break;
-                case 5:
-                    buscarPorStockMinimo();
-
-                    break;
-                case 6:
-                    insertarLibro();
-
-                    break;
-                case 7:
-                    eliminarPorTitulo();
-
-                    break;
-                case 0:
-                    break;
+                case 1 -> {
+                
+                }
+                case 2 -> {
+               
+                }
+                case 3 -> {
+                 
+                }
+                case 4 -> {
+                  
+                }
+                case 5 -> {
+                 
+                }
+                case 6 -> {
+                 
+                }
+                case 7 -> {
+                 
+                }
+                case 8 -> {
+                }
+                case 0 -> {
+                    System.out.println("Saliendo...");
+                }
+                default -> System.out.println("Opcion no valida.");
             }
         } while (opcion != 0);
 
     }
 
-    public static void mostrarTodo() {
-        List<Libro> libros = LibroDAO.obtenerTodos();
-        if (libros.isEmpty()) {
-            System.out.println("No hay libros disponibles.");
-        } else {
-            for (Libro libro : libros) {
-                System.out.println(libro);
-            }
-        }
-
-    }
-
-    public static void buscarPorTitulo() {
-        System.out.print("Introduce el titulo");
-        String titulo = sc.nextLine();
-
-        List<Libro> libros = LibroDAO.obtenerPorTitulo(titulo);
-        if (libros.isEmpty()) {
-            System.out.println("No hay libros.");
-        } else {
-            for (Libro libro : libros) {
-                System.out.println(libro);
-            }
-        }
-    }
-
-    public static void buscarPorAutor() {
-        System.out.print("Introduce el autor ");
-        String autor = sc.nextLine();
-
-        List<Libro> libros = LibroDAO.obtenerPorAutor(autor);
-        if (libros.isEmpty()) {
-            System.out.println("No se encontraron libros con autor");
-        } else {
-            for (Libro libro : libros) {
-                System.out.println(libro);
-            }
-        }
-    }
-
-    public static void buscarPorRangoPrecio() {
-        System.out.print("Precio minimo ");
-        double min = Double.parseDouble(sc.nextLine());
-        System.out.print("Precio max ");
-        double max = Double.parseDouble(sc.nextLine());
-
-        List<Libro> libros = LibroDAO.buscarPorRangoPrecio(min, max);
-        if (libros.isEmpty()) {
-            System.out.println("No hay libros");
-        } else {
-            for (Libro libro : libros) {
-                System.out.println(libro);
-            }
-        }
-    }
-
-    public static void buscarPorStockMinimo() {
-        System.out.print("Stock min");
-        int stock = Integer.parseInt(sc.nextLine());
-
-        List<Libro> libros = LibroDAO.buscarPorStockMinimo(stock);
-        if (libros.isEmpty()) {
-            System.out.println("No hay libros.");
-        } else {
-            for (Libro libro : libros) {
-                System.out.println(libro);
-            }
-        }
-    }
-
-    public static void insertarLibro() {
-        System.out.print("titulo: ");
-        String titulo = sc.nextLine();
-        System.out.print("autor: ");
-        String autor = sc.nextLine();
-        System.out.print("precio: ");
-        double precio = Double.parseDouble(sc.nextLine());
-        System.out.print("stock: ");
-        int stock = Integer.parseInt(sc.nextLine());
-
-        Libro libro = new Libro(titulo, autor, precio, stock);
-        boolean prueba = LibroDAO.insertar(libro);
-        if (prueba) {
-            System.out.println("Libro insertado correctamente.");
-        } else {
-            System.out.println("error");
-
-        }
-    }
-
-    public static void eliminarPorTitulo() {
-        System.out.print("Introduce el tilto del libro a eliminar: ");
-        String titulo = sc.nextLine();
-
-        List<Libro> libros = LibroDAO.obtenerPorTitulo(titulo);
-
-        if (libros.isEmpty()) {
-            System.out.println("No hay ningun libro.");
-        } else if (libros.size() == 1) {
-            LibroDAO.eliminar(libros.get(0).getId());
-            System.out.println("Libro eliminado.");
-        } else {
-            System.out.println("Hay muchos con el titulo");
-            for (Libro libro : libros) {
-                System.out.println(libro);
-            }
-            System.out.print("Introduce el id del que quieres eliminar: ");
-            int id = Integer.parseInt(sc.nextLine());
-            boolean prueba = LibroDAO.eliminar(id);
-            if (prueba) {
-                System.out.println("Libro muerto.");
-            } else {
-                System.out.println("error");
-
-            }
-        }
-    }
 
 }
