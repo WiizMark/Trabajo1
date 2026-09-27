@@ -4,23 +4,21 @@ import java.util.List;
 
 public interface LibroRepository<T> {
 
-    T obtenerPorTitulo(String titulo);
+    List<T> obtenerPorTitulo(String titulo);
 
-
-    T buscarPorCantidadStock(int stock);
-
+    List<T> buscarPorAutor(String autor);
+    
+     List<T> mostrarLibros();
 
     List<T> buscarPorRango(double precioMin, double precioMax);
-
-
-    T eliminarPorTitulo(String titulo);
-
-
-    public void CopiarArchivos();
-
-    
-    List<T> mostrarLibros(); 
-
-
+ 
     boolean insertar(T objeto);
+    
+     List<T> buscarPorCantidadStock(int stockMinimo);
+
+  
+    boolean eliminarPorId(String id);
+
+   
+    public void CopiarArchivos();
 }
