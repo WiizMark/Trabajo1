@@ -92,7 +92,33 @@ public class Main {
                  
                 }
                 case 6 -> {
-                 
+                    System.out.print("Dame un id ");
+                    
+                    String id = sc.nextLine();
+                    
+                    System.out.print("dame titulo ");
+                    
+                    String titulo = sc.nextLine();
+                    
+                    System.out.print("dame autor");
+                    
+                    String autor = sc.nextLine();
+                    
+                    System.out.print("dame precio");
+                    
+                    double precio = sc.nextDouble();
+                    
+                    sc.nextLine();
+                    System.out.print("stock");
+                    int stock = sc.nextInt();
+                    sc.nextLine();
+
+                    Libro libro = new Libro(id, titulo, autor, precio, stock);
+                    if (reposi.insertar(libro)) {
+                        System.out.println("Insertado");
+                    } else {
+                        System.out.println("No insertado");
+                    }
                 }
                 case 7 -> {
                  
@@ -103,7 +129,7 @@ public class Main {
                 case 0 -> {
                     System.out.println("Saliendo...");
                 }
-                default -> System.out.println("Opcion no valida.");
+                default -> System.out.println("error");
             }
         } while (opcion != 0);
 
