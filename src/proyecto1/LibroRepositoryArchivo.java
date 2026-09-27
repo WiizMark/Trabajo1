@@ -91,18 +91,42 @@ List<Libro> libros = mostrarLibros();
 
     @Override
     public List<Libro> buscarPorCantidadStock(int stockMinimo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ List<Libro> libros = mostrarLibros();
+        List<Libro> resultado = new ArrayList<>();
+
+        for (int i = 0; i < libros.size(); i++) {
+            Libro libro1 = libros.get(i);
+            if (libro1.getStock() >= stockMinimo) {
+                resultado.add(libro1);
+            }
+        }
+        return resultado;    }
 
     @Override
     public boolean eliminarPorId(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ List<Libro> libros = mostrarLibros();
+
+        for (int i = 0; i < libros.size(); i++) {
+            if (libros.get(i).getId().equals(id)) {
+                libros.remove(i);
+                return guardarLibros(libros);
+            }
+        }
+        return false;    }
 
     @Override
     public void CopiarArchivos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+List<Libro> libros = mostrarLibros();
+
+        if (libros.isEmpty()) {
+            System.out.println("No hay libros");
+            return;
+        }
+
+        LibroRepositoryMySQL repoMySQL = new LibroRepositoryMySQL();
+        if (repoMySQL.guardarLibros(libros)) {
+            System.out.println("Se han copiado " + libros.size());
+        }    }
     
     
      public boolean guardarLibros(List<Libro> libros) {
