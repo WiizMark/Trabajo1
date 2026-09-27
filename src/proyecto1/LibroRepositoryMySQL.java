@@ -45,7 +45,7 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
     @Override
     public List<Libro> buscarPorAutor(String autor) {
         List<Libro> libros = new ArrayList<>();
-        String sql = "select * from libros where autor = ?";
+        String sql = "select id, titulo, autor, precio, stock from libros where autor = ?";
         try (Connection conn = ConexionesDB.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, autor);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -63,7 +63,7 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
     @Override
     public List<Libro> mostrarLibros() {
         List<Libro> libros = new ArrayList<>();
-        String sql = "select * from libros";
+        String sql = "select id, titulo, autor, precio, stock from libros";
         try (Connection conn = ConexionesDB.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 libros.add(mapear(rs));
@@ -77,7 +77,7 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
     @Override
     public List<Libro> buscarPorRango(double precioMin, double precioMax) {
         List<Libro> libros = new ArrayList<>();
-        String sql = "select * from libros where precio between ? and ?";
+        String sql = "select id, titulo, autor, precio, stock from libros where precio between ? and ?";
 
         try (Connection conn = ConexionesDB.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -103,13 +103,34 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
 
     @Override
     public List<Libro> buscarPorCantidadStock(int stockMinimo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    List<Libro> libros = new ArrayList<>();
+        String sql = "select id, titulo, autor, precio, stock from libros where stock >= ?";
+        try (Connection conn = ConexionesDB.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, stockMinimo);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    libros.add(mapear(rs));
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return libros;    }
+
 
     @Override
     public boolean eliminarPorId(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    String sql = "delete from libros where id = ?";
+        try (Connection conn = ConexionesDB.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+            return pstmt.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return false;    }
 
     @Override
     public void CopiarArchivos() {
