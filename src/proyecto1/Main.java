@@ -11,7 +11,7 @@ import proyecto1.LibroRepositoryMySQL;
 public class Main {
 
     public static void main(String[] args) {
-          Scanner sc;
+        Scanner sc;
         sc = new Scanner(System.in).useLocale(Locale.US);
 
         LibroRepository<Libro> reposi;
@@ -51,13 +51,39 @@ public class Main {
             opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
                 case 1 -> {
-                
+                    List<Libro> libros = reposi.mostrarLibros();
+                    if (libros.isEmpty()) {
+                        System.out.println("No tienes libros.");
+                    } else {
+                        for (Libro libro : libros) {
+                            System.out.println(libro);
+                        }
+                    }
                 }
                 case 2 -> {
-               
+                    System.out.print("Introduce el titulo del libro: ");
+                    String titulo = sc.nextLine();
+                    List<Libro> libros = reposi.obtenerPorTitulo(titulo);
+                    if (!libros.isEmpty()) {
+                        for (Libro libro : libros) {
+                            System.out.println(libro);
+                        }
+                    } else {
+                        System.out.println("No hay ningun libro con ese titulo.");
+                    }
                 }
                 case 3 -> {
-                 
+                    System.out.print("Introduce el autor: ");
+                    String autor = sc.nextLine();
+
+                    List<Libro> libros = reposi.buscarPorAutor(autor);
+                    if (libros.isEmpty()) {
+                        System.out.println("No hay libros de ese autor.");
+                    } else {
+                        for (Libro libro : libros) {
+                            System.out.println(libro);
+                        }
+                    }
                 }
                 case 4 -> {
                   
@@ -72,6 +98,7 @@ public class Main {
                  
                 }
                 case 8 -> {
+                    reposi.CopiarArchivos();
                 }
                 case 0 -> {
                     System.out.println("Saliendo...");
