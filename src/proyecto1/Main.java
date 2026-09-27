@@ -89,7 +89,18 @@ public class Main {
                   
                 }
                 case 5 -> {
-                 
+                  System.out.print("minimo ");
+                    int stock = sc.nextInt();
+                    sc.nextLine();
+
+                    List<Libro> libros = reposi.buscarPorCantidadStock(stock);
+                    if (libros.isEmpty()) {
+                        System.out.println("No hay");
+                    } else {
+                        for (Libro libro : libros) {
+                            System.out.println(libro);
+                        }
+                    }
                 }
                 case 6 -> {
                     System.out.print("Dame un id ");
