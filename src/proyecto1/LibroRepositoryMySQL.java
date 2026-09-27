@@ -98,8 +98,23 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
 
     @Override
     public boolean insertar(Libro objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ String sql = "insert into libros (id, titulo, autor, precio, stock) values (?, ?, ?, ?, ?)";
+
+        try (Connection conn = ConexionesDB.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, objeto.getId());
+            pstmt.setString(2, objeto.getTitulo());
+            pstmt.setString(3, objeto.getAutor());
+            pstmt.setDouble(4, objeto.getPrecio());
+            pstmt.setInt(5, objeto.getStock());
+
+            return pstmt.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return false;    }
 
     @Override
     public List<Libro> buscarPorCantidadStock(int stockMinimo) {
@@ -134,11 +149,48 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
 
     @Override
     public void CopiarArchivos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ List<Libro> libros = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("libros.txt"))) {
+            String linea = br.readLine();
+            while (linea != null) {
+                if (!linea.trim().equals("")) {
+                    String[] campos = linea.split("\\^");
+                    Libro libro = new Libro();
+                    libro.setId(campos[0]);
+                    libro.setTitulo(campos[1]);
+                    libro.setAutor(campos[2]);
+                    libro.setPrecio(Double.parseDouble(campos[3]));
+                    libro.setStock(Integer.parseInt(campos[4]));
+                    libros.add(libro);
+                }
+                linea = br.readLine();
+            }
+        } catch (Exception e) {
+            System.out.println("Error " + e);
+            return;
+        }
+
+        if (guardarLibros(libros)) {
+            System.out.println("Se han copiado " + libros.size());
+        }    }
 
     boolean guardarLibros(List<Libro> libros) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        String sql = "delete from libros";
+
+        try (Connection conn = ConexionesDB.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            return false;
+        }
+
+        for (int i = 0; i < libros.size(); i++) {
+            insertar(libros.get(i));
+        }
+        return true;    }
 
 }
