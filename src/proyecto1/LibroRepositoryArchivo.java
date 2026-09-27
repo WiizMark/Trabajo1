@@ -70,23 +70,89 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
 
     @Override
     public boolean insertar(Libro objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+List<Libro> libros = mostrarLibros();
+        for (int i = 0; i < libros.size(); i++) {
+            if (libros.get(i).getId().equals(objeto.getId())) {
+                System.out.println("Ya existe un libro con el id " + objeto.getId());
+                return false;
+            }
+        }
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true));
+            bw.write(libroALinea(objeto));
+            bw.newLine();
+            bw.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            return false;
+        }    }
 
     @Override
     public List<Libro> buscarPorCantidadStock(int stockMinimo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ List<Libro> libros = mostrarLibros();
+        List<Libro> resultado = new ArrayList<>();
+
+        for (int i = 0; i < libros.size(); i++) {
+            Libro libro1 = libros.get(i);
+            if (libro1.getStock() >= stockMinimo) {
+                resultado.add(libro1);
+            }
+        }
+        return resultado;    }
 
     @Override
     public boolean eliminarPorId(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ List<Libro> libros = mostrarLibros();
+
+        for (int i = 0; i < libros.size(); i++) {
+            if (libros.get(i).getId().equals(id)) {
+                libros.remove(i);
+                return guardarLibros(libros);
+            }
+        }
+        return false;    }
 
     @Override
     public void CopiarArchivos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+List<Libro> libros = mostrarLibros();
+
+        if (libros.isEmpty()) {
+            System.out.println("No hay libros");
+            return;
+        }
+
+        LibroRepositoryMySQL repoMySQL = new LibroRepositoryMySQL();
+        if (repoMySQL.guardarLibros(libros)) {
+            System.out.println("Se han copiado " + libros.size());
+        }    }
+    
+    
+     public boolean guardarLibros(List<Libro> libros) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+            for (int i = 0; i < libros.size(); i++) {
+                bw.write(libroALinea(libros.get(i)));
+                bw.newLine();
+            }
+            bw.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            return false;
+        }
     }
+    
+     private String libroALinea(Libro objeto) {
+        return objeto.getId() + espacio
+                + objeto.getTitulo() + espacio
+                + objeto.getAutor() + espacio
+                + objeto.getPrecio() + espacio
+                + objeto.getStock();
+    }
+
+     
     private Libro mapear(String linea) {
 
         String[] campos = linea.split("\\" + espacio);
