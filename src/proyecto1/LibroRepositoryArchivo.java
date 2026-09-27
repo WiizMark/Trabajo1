@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibroRepositoryArchivo implements LibroRepository<Libro> {
-     private static final String archivo = "libros.txt";
+     private static final String archivo = "Libros.txt";
     private static final String espacio = "^";
     @Override
     public List<Libro> obtenerPorTitulo(String titulo) {
