@@ -11,9 +11,7 @@ public class Main {
     static LibroRepositoryArchivo LibroDAO = new LibroRepositoryArchivo();
 
     public static void main(String[] args) {
-
-        System.out.println("proyecto1.Main.main()");
-
+        
         int opcion;
         do {
             System.out.println("\n--- MENÚ ---");
