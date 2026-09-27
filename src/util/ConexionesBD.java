@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class LibroRepositoryMySQL {
+public class ConexionesDB {
 
     private static final Dotenv dotenv = Dotenv.load();
 
