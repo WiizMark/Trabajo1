@@ -38,13 +38,35 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
 
     @Override
     public List<Libro> mostrarLibros() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ List<Libro> libros = new ArrayList<>();
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(archivo));
+            String linea = br.readLine();
+            while (linea != null) {
+                if (!linea.trim().equals("")) {
+                    libros.add(mapear(linea));
+                }
+                linea = br.readLine();
+            }
+            br.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+        return libros;    }
 
     @Override
     public List<Libro> buscarPorRango(double precioMin, double precioMax) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ List<Libro> libros = mostrarLibros();
+        List<Libro> resultado = new ArrayList<>();
+
+        for (int i = 0; i < libros.size(); i++) {
+            Libro libro = libros.get(i);
+            if (libro.getPrecio() >= precioMin && libro.getPrecio() <= precioMax) {
+                resultado.add(libro);
+            }
+        }
+        return resultado;    }
 
     @Override
     public boolean insertar(Libro objeto) {

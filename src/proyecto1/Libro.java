@@ -2,13 +2,13 @@ package proyecto1;
 
 public class Libro {
 
-    protected int id;
+    protected String id;
     protected String titulo;
     protected String autor;
     protected double precio;
     protected int stock;
 
-    public Libro(int id, String titulo, String autor, double precio, int stock) {
+    public Libro(String id, String titulo, String autor, double precio, int stock) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
@@ -26,11 +26,11 @@ public class Libro {
     public Libro() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
