@@ -86,7 +86,25 @@ public class Main {
                     }
                 }
                 case 4 -> {
-                  
+                    System.out.print("Precio min ");
+                    double precioMin = sc.nextDouble();
+                    sc.nextLine();
+                    System.out.print("Precio max ");
+                    double precioMax = sc.nextDouble();
+                    sc.nextLine();
+                    if (precioMin > precioMax) {
+                        double aux = precioMin;
+                        precioMin = precioMax;
+                        precioMax = aux;
+                    }
+                    List<Libro> libros = reposi.buscarPorRango(precioMin, precioMax);
+                    if (libros.isEmpty()) {
+                        System.out.println("No quedan libros.");
+                    } else {
+                        for (int i = 0; i < libros.size(); i++) {
+                            System.out.println(libros.get(i));
+                        }
+                    }
                 }
                 case 5 -> {
                   System.out.print("minimo ");
