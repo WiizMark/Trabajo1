@@ -14,13 +14,21 @@ import proyecto1.Libro;
 
  
 /**
-
- *
+ * Usa {@link ConexionesDB} para conectarse
+ * Usa {@link LibroRepository} usar el repositorio con la informacion de la base de datos
  * @author Nabil,Marcos
  * @version 1.0
  */
 
 public class LibroRepositoryMySQL implements LibroRepository<Libro> {
+    
+    
+    /**
+     * Convierte la fila {@link ResultSet} en una variable usable {@link Libro}.
+     * @param rs se posiciona en cada linea para pillar la variable
+     * @return un {@link Libro} con todos los datos enteros agregados
+     * @throws SQLException da error si algun valor no esta o hay algun error 
+     */
 
     private Libro mapear(ResultSet rs) throws SQLException {
         Libro libro = new Libro();
@@ -31,7 +39,15 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         libro.setStock(rs.getInt("stock"));
         return libro;
     }
-
+    
+    /**
+     * Busca los libros segun el titulo que tu le digas
+     *
+     * @param titulo el titulo que ponemos
+     * @return devuelve la lista de los libros segun el nombre del titulo
+     *  
+     */
+    
     @Override
     public List<Libro> obtenerPorTitulo(String titulo) {
         List<Libro> libros = new ArrayList<>();
