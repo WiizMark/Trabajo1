@@ -52,52 +52,95 @@ public class Libro {
     }
     
     /**
-     * Crea un libro vacío, sin ningún dato.
+     * Crea un libro vacío, sin ningún tipo de dato.
      */
     
     public Libro() {
     }
 
+    /**
+     * @return Devuelve el identificador del libro
+     */
+    
     public String getId() {
         return id;
     }
-
+    
+    /**
+     * @param id Nuevo identificador del libro
+     */
+    
     public void setId(String id) {
         this.id = id;
     }
-
+    
+    /**
+     * @return Devuelve el titulo del libro
+     */
+    
     public String getTitulo() {
         return titulo;
     }
-
+    
+    /**
+     * @param titulo Nuevo título del libro
+     */
+    
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
+    /**
+     * @return Devuelve el autor del libro
+     */
+    
     public String getAutor() {
         return autor;
     }
-
+    
+    /**
+     * @param autor Nuevo autor del libro
+     */
+    
     public void setAutor(String autor) {
         this.autor = autor;
     }
-
+    
+    /**
+     * @return Devuelve el precio del libro
+     */
+    
     public double getPrecio() {
         return precio;
     }
-
+    
+    /**
+     * @param precio Nuevo precio del libro
+     */
+    
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
+    
+    /**
+     * @return Devuelve el stock del libro
+     */
+    
     public int getStock() {
         return stock;
     }
-
+    /**
+     * @param stock nuevo stock del libro
+     */
     public void setStock(int stock) {
         this.stock = stock;
     }
 
+    /**
+     * Ahora hacemos un toString para que imprima todos los datos del libro.
+     * @return Devuelve todos los datos del libro.
+     */
+    
     @Override
     public String toString() {
         return "Libro{" + "id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", precio=" + precio + ", stock=" + stock + '}';
