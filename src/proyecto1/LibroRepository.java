@@ -37,15 +37,29 @@ public interface LibroRepository<T> {
     
     List<T> mostrarLibros();
 
+    /**
+     * Busca una lista de libros contando con que el precio se encuentre entre el precio mínimo y máximo indicados.
+     *
+     * @param precioMin Es el precio mínimo que se quiere buscar.
+     * @param precioMax Es el precio máximo que se quiere buscar.
+     * @return Devuelve los libros que se encuentran dentro del rango de los precios indicados.
+     */    
+    
     List<T> buscarPorRango(double precioMin, double precioMax);
  
+    
+    
     boolean insertar(T objeto);
+    
+    
     
      List<T> buscarPorCantidadStock(int stockMinimo);
 
-  
+
+     
     boolean eliminarPorId(String id);
 
-   
+
+    
     public void CopiarArchivos();
 }
