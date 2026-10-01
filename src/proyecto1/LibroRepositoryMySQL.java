@@ -204,7 +204,6 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
      * @throws SQLException Si falla al eliminarse 
      */
 
-    
     @Override
     public boolean eliminarPorId(String id) {
     String sql = "delete from libros where id = ?";
@@ -217,6 +216,8 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         }
         return false;    }
 
+    
+    
     @Override
     public void CopiarArchivos() {
  List<Libro> libros = new ArrayList<>();
