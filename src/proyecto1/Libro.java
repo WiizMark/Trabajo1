@@ -1,13 +1,29 @@
 package proyecto1;
 
-public class Libro {
+    /**
+     * Clase Libro, aqui crearemos todos los atributos que nos pida el enunciado.
+     * Almacena su identificador, título, autor, precio y stock disponible.
+     */
 
+public class Libro {
+    
     protected String id;
     protected String titulo;
     protected String autor;
     protected double precio;
     protected int stock;
-
+    
+ /**
+     * Aquí creamos un libro con todos sus datos, incluido el id.
+     * Se usa normalmente al leer un libro ya existente (de archivo o de BD).
+     *
+     * @param id identificador único del libro
+     * @param titulo título del libro
+     * @param autor autor del libro
+     * @param precio precio del libro
+     * @param stock cantidad de copias disponibles
+     */
+    
     public Libro(String id, String titulo, String autor, double precio, int stock) {
         this.id = id;
         this.titulo = titulo;
