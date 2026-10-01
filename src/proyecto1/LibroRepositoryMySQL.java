@@ -45,7 +45,7 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
      *
      * @param titulo el titulo que ponemos
      * @return devuelve la lista de los libros segun el nombre del titulo
-     *  
+     * @exception SQLException Si no encontro nada o hubo un error
      */
     
     @Override
@@ -72,6 +72,7 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
      *
      * @param autor nombre que pongamos
      * @return lista de libros del autor dependiendo de lo que hemos puesto en autor
+     * @exception SQLException Si no encontro nada o hubo un error
      */
     @Override
     public List<Libro> buscarPorAutor(String autor) {
@@ -95,6 +96,7 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
      * Busca todos los libros
      *
      * @return lista todos los libros
+     * @exception SQLException Si no encontro nada o hubo un error
      */
     @Override
     public List<Libro> mostrarLibros() {
@@ -116,6 +118,7 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
      * @param precioMin precio minimo que ponemos
      * @param precioMax precio maximo que ponemos
      * @return lista de libros que esten entre precio minimo y precio maximo
+     * @exception SQLException Si no encontro nada o hubo un error
      */
 
     @Override
@@ -139,6 +142,13 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         }
         return libros;
     }
+    
+     /**
+     * Insertamos datos en la base de sql
+     * @return devuelve si la lista fue agregada o no
+     * @throws SQLException si no se pudo agregar 
+     */
+
 
     @Override
     public boolean insertar(Libro objeto) {
@@ -160,6 +170,14 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         }
         return false;    }
 
+     /**
+     * Busca por cantidad de stock que pongamos nosotros
+     *
+     * @param stockMinimo ponemos el stockminimo que queremos buscar
+     * @return deuvelve la lista con el filtro que hemos puesto anteriormente
+     * @exception SQLException Si no encontro nada o hubo un error
+     */
+    
     @Override
     public List<Libro> buscarPorCantidadStock(int stockMinimo) {
     List<Libro> libros = new ArrayList<>();
@@ -179,6 +197,14 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         return libros;    }
 
 
+     /**
+     * Elimina una lista de nuestra base de datos SQL
+     * @param id ponemos el id de la lista que queremos eliminar
+     * @return si se elimino o no la lista
+     * @throws SQLException Si falla al eliminarse 
+     */
+
+    
     @Override
     public boolean eliminarPorId(String id) {
     String sql = "delete from libros where id = ?";
