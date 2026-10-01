@@ -3,6 +3,9 @@ package proyecto1;
     /**
      * Clase Libro, aqui crearemos todos los atributos que nos pida el enunciado.
      * Almacena su identificador, título, autor, precio y stock disponible.
+     * 
+     * @author Marcos, Nabil
+     * @version 1.0
      */
 
 public class Libro {
@@ -13,9 +16,9 @@ public class Libro {
     protected double precio;
     protected int stock;
     
- /**
+    /**
      * Aquí creamos un libro con todos sus datos, incluido el id.
-     * Se usa normalmente al leer un libro ya existente (de archivo o de BD).
+     * Se usa normalmente al leer un libro ya existente.
      *
      * @param id identificador único del libro
      * @param titulo título del libro
@@ -31,14 +34,27 @@ public class Libro {
         this.precio = precio;
         this.stock = stock;
     }
-
+    
+    /**
+     * Crea un libro sin id, pensado para libros nuevos que todavía no han sido insertados
+     *
+     * @param titulo título del libro
+     * @param autor autor del libro
+     * @param precio precio del libro
+     * @param stock cantidad de copias disponibles
+     */
+    
     public Libro(String titulo, String autor, double precio, int stock) {
         this.titulo = titulo;
         this.autor = autor;
         this.precio = precio;
         this.stock = stock;
     }
-
+    
+    /**
+     * Crea un libro vacío, sin ningún dato.
+     */
+    
     public Libro() {
     }
 
