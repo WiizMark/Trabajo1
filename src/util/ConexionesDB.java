@@ -28,7 +28,7 @@ public class ConexionesDB {
      * Establece la conexion con la base de datos usando una funcion
      * 
      *
-     * @return returnea las variables si se hace con exito y si hay algun fallo returnea un error
+     * @return returnea las variables si se hace con exito {@link Connection} y si hay algun fallo returnea un error
      * de que no se pudo conectar a la base de datos(puede ser por meter mal el user y la contra o por otro error).
      */
     public static Connection getConnection() {

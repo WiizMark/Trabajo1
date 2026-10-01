@@ -12,6 +12,14 @@ import java.util.List;
 import util.ConexionesDB;
 import proyecto1.Libro;
 
+ 
+/**
+
+ *
+ * @author Nabil,Marcos
+ * @version 1.0
+ */
+
 public class LibroRepositoryMySQL implements LibroRepository<Libro> {
 
     private Libro mapear(ResultSet rs) throws SQLException {
