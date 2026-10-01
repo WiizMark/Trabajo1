@@ -66,6 +66,13 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         return libros;
     }
 
+    
+     /**
+     * Busca los libros hechpos por un autor en concreto
+     *
+     * @param autor nombre que pongamos
+     * @return lista de libros del autor dependiendo de lo que hemos puesto en autor
+     */
     @Override
     public List<Libro> buscarPorAutor(String autor) {
         List<Libro> libros = new ArrayList<>();
@@ -84,6 +91,11 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         return libros;
     }
 
+    /**
+     * Busca todos los libros
+     *
+     * @return lista todos los libros
+     */
     @Override
     public List<Libro> mostrarLibros() {
         List<Libro> libros = new ArrayList<>();
@@ -97,6 +109,14 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         }
         return libros;
     }
+    
+     /**
+     * Busca libros buscando el precio minimo y el precio maximo
+     *
+     * @param precioMin precio minimo que ponemos
+     * @param precioMax precio maximo que ponemos
+     * @return lista de libros que esten entre precio minimo y precio maximo
+     */
 
     @Override
     public List<Libro> buscarPorRango(double precioMin, double precioMax) {
