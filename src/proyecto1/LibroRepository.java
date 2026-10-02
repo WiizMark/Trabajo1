@@ -46,8 +46,13 @@ public interface LibroRepository<T> {
      */    
     
     List<T> buscarPorRango(double precioMin, double precioMax);
- 
-    
+
+    /**
+     * Inserta un nuevo libro.
+     *
+     * @param objeto Es el libro que queremos insertar.
+     * @return Devuelve true si el objeto se ha insertado correctamente y false si no se ha podido insertar.
+     */    
     
     boolean insertar(T objeto);
     
