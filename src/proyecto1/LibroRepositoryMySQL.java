@@ -216,7 +216,12 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         }
         return false;    }
 
-    
+    /**
+     * Lee el archivo {@code libros.txt} y copia todo lo que tiene
+     * ignora las lineas vacias
+     * Si ocurre un error al leer el archivo no hace nada
+     * devuelve los libros que fueron copiados
+     */
     
     @Override
     public void CopiarArchivos() {
@@ -245,6 +250,14 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         if (guardarLibros(libros)) {
             System.out.println("Se han copiado " + libros.size());
         }    }
+    
+    /**
+       *Remplaza la lista por la otra que hemos hecho
+     *
+     * @param libros lista de los libros de la sql
+     * @return returnea true of falls dependiendo de si funciono o no
+     *        
+     */
 
     boolean guardarLibros(List<Libro> libros) {
         String sql = "delete from libros";
