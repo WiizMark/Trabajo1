@@ -7,9 +7,25 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Esta clase se encarga de gestionar los libros guardados en un archivo.
+ * Permite buscar, mostrar, insertar y eliminar libros del archivo.
+ *
+ * @author Marcos, Nabil
+ * @version 1.0
+ */
+
 public class LibroRepositoryArchivo implements LibroRepository<Libro> {
      private static final String archivo = "Libros.txt";
     private static final String espacio = "^";
+    
+    /**
+     * Busca los libros que tienen el título indicado.
+     *
+     * @param titulo Es el título del libro que quieres buscar.
+     * @return Devuelve una lista con los libros que tienen ese título.
+     */
+    
     @Override
     public List<Libro> obtenerPorTitulo(String titulo) {
         List<Libro> libros = mostrarLibros();
@@ -23,6 +39,13 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
         }
         return resultado;    }
 
+    /**
+     * Busca los libros que pertenecen al autor indicado.
+     *
+     * @param autor Es el autor cuyos libros quieres buscar.
+     * @return Devuelve una lista con los libros de ese autor.
+     */
+    
     @Override
     public List<Libro> buscarPorAutor(String autor) {
  List<Libro> libros = mostrarLibros();
@@ -36,6 +59,12 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
         }
         return resultado;    }
 
+    /**
+     * Muestra todos los libros que están guardados en el archivo.
+     *
+     * @return Devuelve una lista con todos los libros del archivo.
+     */    
+    
     @Override
     public List<Libro> mostrarLibros() {
  List<Libro> libros = new ArrayList<>();
@@ -55,6 +84,14 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
         }
         return libros;    }
 
+    /**
+     * Busca los libros que tienen el precio dentro del rango indicado.
+     *
+     * @param precioMin Es el precio mínimo que puede tener el libro.
+     * @param precioMax Es el precio máximo que puede tener el libro.
+     * @return Devuelve una lista con los libros que están dentro del rango de precios.
+     */
+    
     @Override
     public List<Libro> buscarPorRango(double precioMin, double precioMax) {
  List<Libro> libros = mostrarLibros();
@@ -68,6 +105,8 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
         }
         return resultado;    }
 
+
+    
     @Override
     public boolean insertar(Libro objeto) {
 List<Libro> libros = mostrarLibros();
