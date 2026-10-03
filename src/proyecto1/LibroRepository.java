@@ -56,15 +56,27 @@ public interface LibroRepository<T> {
     
     boolean insertar(T objeto);
     
-    
+/**
+ * Busca los libros que tienen una cantidad de stock igual o superior al mínimo indicado.
+ *
+ * @param stockMinimo Es la cantidad mínima de stock que tienes que buscar.
+ * @return Devuelve los libros que si tienen la cantidad mínima de stock indicada.
+ */
     
      List<T> buscarPorCantidadStock(int stockMinimo);
 
-
+/**
+ * Elimina un libro utilizando el identificador que le hemos indicado.
+ *
+ * @param id Es el identificador del libro que quieres eliminar.
+ * @return Devuelve true si el libro se ha eliminado correctamente y false si no se ha podido eliminar.
+ */
      
     boolean eliminarPorId(String id);
 
-
+/**
+ * Realiza una copia de los archivos utilizados por el programa.
+ */
     
     public void CopiarArchivos();
 }
