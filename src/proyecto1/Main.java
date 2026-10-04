@@ -8,8 +8,24 @@ import proyecto1.LibroRepository;
 import proyecto1.LibroRepositoryArchivo;
 import proyecto1.LibroRepositoryMySQL;
 
+/**
+ * El main donde se ejecutan todos los comandosC
+ * 
+ * Menu interactivo para poder ver y consultar y modificar cualquier cosa de la base de datos
+ * 
+ * @author Nabil y Marcos
+ * @version 1.0
+ */
+
 public class Main {
 
+  /**
+     * Punto de entrada del programa.
+     * pides al usuario que eliga un numero dependiendo de que quiere hacer
+     * en bucle hasta que elige la opción @param opcion la ultima para salir
+     * Si no pones el parametro correcto te dara un error
+     */
+    
     public static void main(String[] args) {
         Scanner sc;
         sc = new Scanner(System.in).useLocale(Locale.US);
@@ -47,7 +63,12 @@ public class Main {
             System.out.println("7. Eliminar libro por título elimina un libro por su título. Si hay varios con el mismo título, el usuario elige por id.");
             System.out.println("0. Salir");
             System.out.print("Elige opción: ");
-
+            
+            
+            /*
+            *Aqui empiezan todos los comandos dependiendo el numero que pongamos hara uno de los case 
+            */
+            
             opcion = Integer.parseInt(sc.nextLine());
             switch (opcion) {
                 case 1 -> {
