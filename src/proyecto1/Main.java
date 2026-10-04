@@ -9,7 +9,7 @@ import proyecto1.LibroRepositoryArchivo;
 import proyecto1.LibroRepositoryMySQL;
 
 /**
- * El main donde se ejecutan todos los comandosC
+ * El main donde se ejecutan todos los comandos
  * 
  * Menu interactivo para poder ver y consultar y modificar cualquier cosa de la base de datos
  * 
@@ -19,13 +19,19 @@ import proyecto1.LibroRepositoryMySQL;
 
 public class Main {
 
-  /**
-     * Punto de entrada del programa.
-     * pides al usuario que eliga un numero dependiendo de que quiere hacer
-     * en bucle hasta que elige la opción @param opcion la ultima para salir
-     * Si no pones el parametro correcto te dara un error
+    /**
+     * Crea una nueva instancia de Main.
      */
-    
+    public Main() {
+    }
+
+    /**
+     * Punto de entrada del programa.
+     * Pide al usuario que elija un repositorio y muestra un menú en bucle
+     * hasta que elige la opción 0 para salir.
+     *
+     * @param args argumentos de línea de comandos, no se utilizan
+     */
     public static void main(String[] args) {
         Scanner sc;
         sc = new Scanner(System.in).useLocale(Locale.US);
