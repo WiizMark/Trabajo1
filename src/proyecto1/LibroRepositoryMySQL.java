@@ -12,7 +12,7 @@ import java.util.List;
 import util.ConexionesDB;
 import proyecto1.Libro;
 
- 
+
 /**
  * Usa {@link ConexionesDB} para conectarse
  * Usa {@link LibroRepository} usar el repositorio con la informacion de la base de datos
@@ -21,15 +21,19 @@ import proyecto1.Libro;
  */
 
 public class LibroRepositoryMySQL implements LibroRepository<Libro> {
-    
-    
+
+    /**
+     * Crea una nueva instancia de LibroRepositoryMySQL.
+     */
+    public LibroRepositoryMySQL() {
+    }
+
     /**
      * Convierte la fila {@link ResultSet} en una variable usable {@link Libro}.
      * @param rs se posiciona en cada linea para pillar la variable
      * @return un {@link Libro} con todos los datos enteros agregados
      * @throws SQLException da error si algun valor no esta o hay algun error 
      */
-
     private Libro mapear(ResultSet rs) throws SQLException {
         Libro libro = new Libro();
         libro.setId(rs.getString("id"));
@@ -45,7 +49,6 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
      *
      * @param titulo el titulo que ponemos
      * @return devuelve la lista de los libros segun el nombre del titulo
-     * @exception SQLException Si no encontro nada o hubo un error
      */
     
     @Override
@@ -66,14 +69,13 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         return libros;
     }
 
-    
-     /**
+    /**
      * Busca los libros hechpos por un autor en concreto
      *
      * @param autor nombre que pongamos
      * @return lista de libros del autor dependiendo de lo que hemos puesto en autor
-     * @exception SQLException Si no encontro nada o hubo un error
      */
+    
     @Override
     public List<Libro> buscarPorAutor(String autor) {
         List<Libro> libros = new ArrayList<>();
@@ -96,8 +98,8 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
      * Busca todos los libros
      *
      * @return lista todos los libros
-     * @exception SQLException Si no encontro nada o hubo un error
      */
+    
     @Override
     public List<Libro> mostrarLibros() {
         List<Libro> libros = new ArrayList<>();
@@ -112,15 +114,14 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         return libros;
     }
     
-     /**
+    /**
      * Busca libros buscando el precio minimo y el precio maximo
      *
      * @param precioMin precio minimo que ponemos
      * @param precioMax precio maximo que ponemos
      * @return lista de libros que esten entre precio minimo y precio maximo
-     * @exception SQLException Si no encontro nada o hubo un error
      */
-
+    
     @Override
     public List<Libro> buscarPorRango(double precioMin, double precioMax) {
         List<Libro> libros = new ArrayList<>();
@@ -143,16 +144,16 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         return libros;
     }
     
-     /**
+    /**
      * Insertamos datos en la base de sql
+     *
+     * @param objeto el libro que queremos insertar
      * @return devuelve si la lista fue agregada o no
-     * @throws SQLException si no se pudo agregar 
      */
-
-
+    
     @Override
     public boolean insertar(Libro objeto) {
- String sql = "insert into libros (id, titulo, autor, precio, stock) values (?, ?, ?, ?, ?)";
+        String sql = "insert into libros (id, titulo, autor, precio, stock) values (?, ?, ?, ?, ?)";
 
         try (Connection conn = ConexionesDB.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -168,19 +169,19 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        return false;    }
+        return false;
+    }
 
-     /**
+    /**
      * Busca por cantidad de stock que pongamos nosotros
      *
      * @param stockMinimo ponemos el stockminimo que queremos buscar
      * @return deuvelve la lista con el filtro que hemos puesto anteriormente
-     * @exception SQLException Si no encontro nada o hubo un error
      */
     
     @Override
     public List<Libro> buscarPorCantidadStock(int stockMinimo) {
-    List<Libro> libros = new ArrayList<>();
+        List<Libro> libros = new ArrayList<>();
         String sql = "select id, titulo, autor, precio, stock from libros where stock >= ?";
         try (Connection conn = ConexionesDB.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -194,19 +195,19 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        return libros;    }
+        return libros;
+    }
 
-
-     /**
+    /**
      * Elimina una lista de nuestra base de datos SQL
+     *
      * @param id ponemos el id de la lista que queremos eliminar
      * @return si se elimino o no la lista
-     * @throws SQLException Si falla al eliminarse 
      */
-
+    
     @Override
     public boolean eliminarPorId(String id) {
-    String sql = "delete from libros where id = ?";
+        String sql = "delete from libros where id = ?";
         try (Connection conn = ConexionesDB.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, id);
@@ -214,18 +215,17 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-        return false;    }
+        return false;
+    }
 
     /**
      * Lee el archivo {@code libros.txt} y copia todo lo que tiene
      * ignora las lineas vacias
      * Si ocurre un error al leer el archivo no hace nada
-     * devuelve los libros que fueron copiados
      */
-    
     @Override
     public void CopiarArchivos() {
- List<Libro> libros = new ArrayList<>();
+        List<Libro> libros = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader("libros.txt"))) {
             String linea = br.readLine();
@@ -249,16 +249,15 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
 
         if (guardarLibros(libros)) {
             System.out.println("Se han copiado " + libros.size());
-        }    }
+        }
+    }
     
     /**
-       *Remplaza la lista por la otra que hemos hecho
+     * Remplaza la lista por la otra que hemos hecho
      *
      * @param libros lista de los libros de la sql
      * @return returnea true of falls dependiendo de si funciono o no
-     *        
      */
-
     boolean guardarLibros(List<Libro> libros) {
         String sql = "delete from libros";
 
@@ -275,6 +274,7 @@ public class LibroRepositoryMySQL implements LibroRepository<Libro> {
         for (int i = 0; i < libros.size(); i++) {
             insertar(libros.get(i));
         }
-        return true;    }
+        return true;
+    }
 
 }

@@ -1,19 +1,43 @@
 package proyecto1;
 
-    /**
-     * Clase Libro, aqui crearemos todos los atributos que nos pida el enunciado.
-     * Almacena su identificador, título, autor, precio y stock disponible.
-     * 
-     * @author Marcos, Nabil
-     * @version 1.0
-     */
+/**
+ * Clase Libro, aqui crearemos todos los atributos que nos pida el enunciado.
+ * Almacena su identificador, título, autor, precio y stock disponible.
+ * 
+ * @author Marcos, Nabil
+ * @version 1.0
+ */
 
 public class Libro {
     
+   /**
+    * Identificador único del libro. 
+    */
+    
     protected String id;
+
+    /**
+     * Título del libro. 
+     */
+    
     protected String titulo;
+
+    /** 
+     * Autor del libro. 
+     */
+    
     protected String autor;
+
+    /** 
+     * Precio del libro. 
+     */
+    
     protected double precio;
+
+    /** 
+     * Cantidad de copias disponibles en stock. 
+     */
+    
     protected int stock;
     
     /**
@@ -59,7 +83,8 @@ public class Libro {
     }
 
     /**
-     * @return Devuelve el identificador del libro
+     * Devuelve el identificador del libro.
+     * @return el identificador del libro
      */
     
     public String getId() {
@@ -67,7 +92,8 @@ public class Libro {
     }
     
     /**
-     * @param id Nuevo identificador del libro
+     * Establece el identificador del libro.
+     * @param id nuevo identificador del libro
      */
     
     public void setId(String id) {
@@ -75,7 +101,8 @@ public class Libro {
     }
     
     /**
-     * @return Devuelve el titulo del libro
+     * Devuelve el título del libro.
+     * @return el título del libro
      */
     
     public String getTitulo() {
@@ -83,7 +110,8 @@ public class Libro {
     }
     
     /**
-     * @param titulo Nuevo título del libro
+     * Establece el título del libro.
+     * @param titulo nuevo título del libro
      */
     
     public void setTitulo(String titulo) {
@@ -91,31 +119,32 @@ public class Libro {
     }
 
     /**
-     * @return Devuelve el autor del libro
+     * Devuelve el autor del libro.
+     * @return el autor del libro
      */
-    
     public String getAutor() {
         return autor;
     }
     
     /**
-     * @param autor Nuevo autor del libro
+     * Establece el autor del libro.
+     * @param autor nuevo autor del libro
      */
-    
     public void setAutor(String autor) {
         this.autor = autor;
     }
     
     /**
-     * @return Devuelve el precio del libro
+     * Devuelve el precio del libro.
+     * @return el precio del libro
      */
-    
     public double getPrecio() {
         return precio;
     }
     
     /**
-     * @param precio Nuevo precio del libro
+     * Establece el precio del libro.
+     * @param precio nuevo precio del libro
      */
     
     public void setPrecio(double precio) {
@@ -123,15 +152,19 @@ public class Libro {
     }
     
     /**
-     * @return Devuelve el stock del libro
+     * Devuelve el stock del libro.
+     * @return el stock del libro
      */
     
     public int getStock() {
         return stock;
     }
+
     /**
+     * Establece el stock del libro.
      * @param stock nuevo stock del libro
      */
+    
     public void setStock(int stock) {
         this.stock = stock;
     }

@@ -1,23 +1,22 @@
 package proyecto1;
 
-    /**
-     * Creamos la clase LibroRepository, la cual servira para llamar luego a los metodos.
-     * @author Marcos, Nabil
-     * @version 1.0
-     */
-     
 import java.util.List;
 
+/**
+ * Creamos la clase LibroRepository, la cual servira para llamar luego a los metodos.
+ * @author Marcos, Nabil
+ * @version 1.0
+ */
 
 public interface LibroRepository<T> {
-    
+
     /**
      * Obtiene una lista de libros, pero solo si el título coincide con el título que le han indicado.
      * 
      * @param titulo Es el título del libro que quieres buscar.
      * @return Devuelve el resultado de los libros con ese título.
      */
-
+    
     List<T> obtenerPorTitulo(String titulo);
     
     /**
@@ -43,23 +42,39 @@ public interface LibroRepository<T> {
      * @param precioMin Es el precio mínimo que se quiere buscar.
      * @param precioMax Es el precio máximo que se quiere buscar.
      * @return Devuelve los libros que se encuentran dentro del rango de los precios indicados.
-     */    
+     */
     
     List<T> buscarPorRango(double precioMin, double precioMax);
- 
-    
-    
+
+    /**
+     * Inserta un nuevo libro.
+     *
+     * @param objeto Es el libro que queremos insertar.
+     * @return Devuelve true si el objeto se ha insertado correctamente y false si no se ha podido insertar.
+     */
     boolean insertar(T objeto);
     
+    /**
+     * Busca los libros que tienen una cantidad de stock igual o superior al mínimo indicado.
+     *
+     * @param stockMinimo Es la cantidad mínima de stock que tienes que buscar.
+     * @return Devuelve los libros que si tienen la cantidad mínima de stock indicada.
+     */
     
+    List<T> buscarPorCantidadStock(int stockMinimo);
+
+    /**
+     * Elimina un libro utilizando el identificador que le hemos indicado.
+     *
+     * @param id Es el identificador del libro que quieres eliminar.
+     * @return Devuelve true si el libro se ha eliminado correctamente y false si no se ha podido eliminar.
+     */
     
-     List<T> buscarPorCantidadStock(int stockMinimo);
-
-
-     
     boolean eliminarPorId(String id);
 
-
+    /**
+     * Realiza una copia de los archivos utilizados por el programa.
+     */
     
     public void CopiarArchivos();
 }

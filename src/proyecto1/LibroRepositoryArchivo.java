@@ -7,9 +7,25 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Esta clase se encarga de gestionar los libros guardados en un archivo.
+ * Permite buscar, mostrar, insertar y eliminar libros del archivo.
+ *
+ * @author Marcos, Nabil
+ * @version 1.0
+ */
+
 public class LibroRepositoryArchivo implements LibroRepository<Libro> {
      private static final String archivo = "Libros.txt";
     private static final String espacio = "^";
+    
+    /**
+     * Busca los libros que tienen el título indicado.
+     *
+     * @param titulo Es el título del libro que quieres buscar.
+     * @return Devuelve una lista con los libros que tienen ese título.
+     */
+    
     @Override
     public List<Libro> obtenerPorTitulo(String titulo) {
         List<Libro> libros = mostrarLibros();
@@ -23,6 +39,13 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
         }
         return resultado;    }
 
+    /**
+     * Busca los libros que pertenecen al autor indicado.
+     *
+     * @param autor Es el autor cuyos libros quieres buscar.
+     * @return Devuelve una lista con los libros de ese autor.
+     */
+    
     @Override
     public List<Libro> buscarPorAutor(String autor) {
  List<Libro> libros = mostrarLibros();
@@ -36,6 +59,12 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
         }
         return resultado;    }
 
+    /**
+     * Muestra todos los libros que están guardados en el archivo.
+     *
+     * @return Devuelve una lista con todos los libros del archivo.
+     */    
+    
     @Override
     public List<Libro> mostrarLibros() {
  List<Libro> libros = new ArrayList<>();
@@ -55,6 +84,14 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
         }
         return libros;    }
 
+    /**
+     * Busca los libros que tienen el precio dentro del rango indicado.
+     *
+     * @param precioMin Es el precio mínimo que puede tener el libro.
+     * @param precioMax Es el precio máximo que puede tener el libro.
+     * @return Devuelve una lista con los libros que están dentro del rango de precios.
+     */
+    
     @Override
     public List<Libro> buscarPorRango(double precioMin, double precioMax) {
  List<Libro> libros = mostrarLibros();
@@ -68,6 +105,13 @@ public class LibroRepositoryArchivo implements LibroRepository<Libro> {
         }
         return resultado;    }
 
+    /**
+     * Inserta un nuevo libro en el archivo.
+     *
+     * @param objeto Es el libro que quieres insertar.
+     * @return Devuelve true si el libro se ha insertado correctamente y false si ya existe o ha ocurrido un error.
+     */
+    
     @Override
     public boolean insertar(Libro objeto) {
 List<Libro> libros = mostrarLibros();
@@ -88,7 +132,14 @@ List<Libro> libros = mostrarLibros();
             System.out.println("Error: " + e);
             return false;
         }    }
-
+    
+    /**
+     * Busca los libros que tienen una cantidad de stock igual o superior a la indicada.
+     *
+     * @param stockMinimo Es la cantidad mínima de stock que debe tener el libro.
+     * @return Devuelve una lista con los libros que tienen el stock indicado o superior.
+     */
+    
     @Override
     public List<Libro> buscarPorCantidadStock(int stockMinimo) {
  List<Libro> libros = mostrarLibros();
@@ -101,7 +152,14 @@ List<Libro> libros = mostrarLibros();
             }
         }
         return resultado;    }
-
+   
+    /**
+     * Elimina un libro del archivo utilizando el identificador.
+     *
+     * @param id Es el identificador del libro que quieres eliminar.
+     * @return Devuelve true si el libro se ha eliminado correctamente y false si no se encuentra.
+     */
+    
     @Override
     public boolean eliminarPorId(String id) {
  List<Libro> libros = mostrarLibros();
@@ -114,6 +172,10 @@ List<Libro> libros = mostrarLibros();
         }
         return false;    }
 
+    /**
+     * Copia todos los libros guardados en el archivo a la base de datos MySQL.
+     */
+    
     @Override
     public void CopiarArchivos() {
 List<Libro> libros = mostrarLibros();
@@ -128,6 +190,12 @@ List<Libro> libros = mostrarLibros();
             System.out.println("Se han copiado " + libros.size());
         }    }
     
+    /**
+     * Guarda una lista de libros en el archivo.
+     *
+     * @param libros Es la lista de libros que quieres guardar en el archivo.
+     * @return Devuelve true si los libros se han guardado correctamente y false si ha ocurrido un error.
+     */
     
      public boolean guardarLibros(List<Libro> libros) {
         try {
@@ -143,7 +211,14 @@ List<Libro> libros = mostrarLibros();
             return false;
         }
     }
-    
+     
+    /**
+     * Convierte los datos de un libro en una línea para poder guardarlos en el archivo.
+     *
+     * @param objeto Es el libro que quieres convertir en una línea.
+     * @return Devuelve una línea con los datos del libro separados por un simbolo.
+     */  
+     
      private String libroALinea(Libro objeto) {
         return objeto.getId() + espacio
                 + objeto.getTitulo() + espacio
@@ -152,6 +227,12 @@ List<Libro> libros = mostrarLibros();
                 + objeto.getStock();
     }
 
+    /**
+     * Convierte una línea del archivo en un objeto Libro.
+     *
+     * @param linea Es la línea del archivo que contiene los datos del libro.
+     * @return Devuelve un objeto Libro con los datos de la línea.
+     */
      
     private Libro mapear(String linea) {
 
