@@ -247,6 +247,108 @@ USE libreria;
 El script completo se entrega junto a este documento como `schema.sql`.
 
 ---
+## 7. Diccionario de datos
+
+### `tienda`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| id | INT | Sí | Identificador único de la tienda. |
+| nombre | VARCHAR(50) | Sí | Nombre de la tienda. No puede repetirse. |
+| direccion | VARCHAR(150) | Sí | Dirección física. |
+| telefono | VARCHAR(20) | Sí | Teléfono de la tienda. |
+| ciudad | VARCHAR(80) | Sí | Ciudad donde se encuentra. |
+
+### `editorial`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| id | INT | Sí | Identificador único de la editorial. |
+| nombre | VARCHAR(120) | Sí | Nombre de la editorial. No puede repetirse. |
+| pais | VARCHAR(80) | Sí | País de la editorial. |
+| telefono_contacto | VARCHAR(20) | Sí | Teléfono usado para contactar con la editorial. |
+
+### `autor`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| id | INT | Sí | Identificador único del autor. |
+| nombre | VARCHAR(120) | Sí | Nombre completo del autor. |
+| nacionalidad | VARCHAR(80) | Sí | Nacionalidad del autor. |
+| anio_nacimiento | SMALLINT | Sí | Año de nacimiento. |
+
+### `libro`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| isbn | CHAR(13) | Sí | ISBN de 13 cifras que identifica el libro. |
+| titulo | VARCHAR(200) | Sí | Título del libro. |
+| anio_publicacion | SMALLINT | Sí | Año de publicación. |
+| paginas | INT | Sí | Número de páginas, mayor que cero. |
+| precio_catalogo | DECIMAL(10,2) | Sí | Precio actual de catálogo en euros. |
+| editorial_id | INT | Sí | Editorial que publica el libro. FK a editorial. |
+
+### `libro_autor`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| isbn | CHAR(13) | Sí | Libro relacionado. Parte de la PK y FK. |
+| autor_id | INT | Sí | Autor relacionado. Parte de la PK y FK. |
+| tipo_autoria | ENUM | Sí | Indica si el autor es principal o colaborador. |
+
+### `inventario`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| tienda_id | INT | Sí | Tienda donde se cuenta el stock. |
+| isbn | CHAR(13) | Sí | Libro contado. |
+| stock | INT | Sí | Número de copias disponibles. No puede ser negativo. |
+| fecha_ultimo_conteo | DATE | Sí | Fecha del último recuento. |
+
+### `empleado`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| dni | VARCHAR(12) | Sí | Identificador del empleado. PK. |
+| nombre | VARCHAR(80) | Sí | Nombre del empleado. |
+| apellidos | VARCHAR(120) | Sí | Apellidos del empleado. |
+| cargo | ENUM | Sí | Librero, cajero o encargado. |
+| fecha_contratacion | DATE | Sí | Fecha de contratación. |
+| email_trabajo | VARCHAR(150) | Sí | Correo laboral único. |
+| tienda_id | INT | Sí | Tienda donde trabaja actualmente. |
+
+### `cliente`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| id | INT | Sí | Identificador interno del cliente. |
+| nombre_completo | VARCHAR(150) | Sí | Nombre completo. |
+| email | VARCHAR(150) | Sí | Correo único del cliente. |
+| telefono | VARCHAR(20) | No | Teléfono, si el cliente lo proporciona. |
+| fecha_alta | DATE | Sí | Fecha en que se registra el cliente. |
+
+### `pedido`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| id | INT | Sí | Identificador del pedido. |
+| fecha | DATETIME | Sí | Fecha y hora del pedido. |
+| metodo_pago | ENUM | Sí | Efectivo, tarjeta o bizum. |
+| estado | ENUM | Sí | Preparado, entregado o cancelado. |
+| tienda_id | INT | Sí | Tienda donde se realiza el pedido. |
+| empleado_dni | VARCHAR(12) | Sí | Empleado que atiende el pedido. |
+| cliente_id | INT | Sí | Cliente que realiza el pedido. |
+
+### `detalle_pedido`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| pedido_id | INT | Sí | Pedido al que pertenece la línea. |
+| isbn | CHAR(13) | Sí | Libro incluido en el pedido. |
+| cantidad | INT | Sí | Número de ejemplares. Debe ser mayor que cero. |
+| precio_pagado | DECIMAL(10,2) | Sí | Precio realmente cobrado por ejemplar en ese pedido. No puede ser negativo. |
+
+---
 
 ## 8. Decisiones de diseño
 
@@ -265,3 +367,4 @@ El script completo se entrega junto a este documento como `schema.sql`.
 **Por que=** un libro puede tener dos o tres autores y un autor puede participar en muchos libros. Ademas, la relacion tiene los datos propio `tipo_autoria`.
 
 **Alternativa descartada:** almacenar varios autores en una sola columna de `libro`, por ejemplo `Cortazar / Borges`, porque dificultaria las busquedas y no permitiria distinguir correctamente la autoria.
+
