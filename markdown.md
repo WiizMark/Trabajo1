@@ -108,3 +108,124 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 19. Cada linea de pedido conserva el precio realmente pagado.
 20. El precio pagado no puede estar en negativo.
 =======
+## 4. Diagrama entidad-relación
+
+![Diagrama](erdEsquema.png)
+
+### Tabla de relaciones
+
+| Relación | Tipo | Cómo se resuelve |
+|---|---|---|
+| `tienda` – `empleado` | 1:N | `empleado.tienda_id` |
+| `tienda` – `inventario` | 1:N | `inventario.tienda_id` |
+| `libro` – `inventario` | 1:N | `inventario.isbn` |
+| `editorial` – `libro` | 1:N | `libro.editorial_id` |
+| `libro` – `autor` | N:M | Tabla `libro_autor` |
+| `tienda` – `pedido` | 1:N | `pedido.tienda_id` |
+| `empleado` – `pedido` | 1:N | `pedido.empleado_dni` |
+| `cliente` – `pedido` | 1:N | `pedido.cliente_id` |
+| `pedido` – `libro` | N:M | Tabla `detalle_pedido` |
+
+---
+## 5. Modelo lógico
+
+### `tienda`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `id` | PK | |
+| `nombre` | | |
+| `direccion` | | |
+| `telefono` | | |
+| `ciudad` | | |
+
+### `editorial`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `id` | PK | |
+| `nombre` | | |
+| `pais` | | |
+| `telefono_contacto` | | |
+
+### `autor`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `id` | PK | |
+| `nombre` | | |
+| `nacionalidad` | | |
+| `anio_nacimiento` | | |
+
+### `libro`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `isbn` | PK | |
+| `titulo` | | |
+| `anio_publicacion` | | |
+| `paginas` | | |
+| `precio_catalogo` | | |
+| `editorial_id` | FK | `editorial.id` |
+
+### `libro_autor`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `isbn` | PK, FK | `libro.isbn` |
+| `autor_id` | PK, FK | `autor.id` |
+| `tipo_autoria` | | |
+
+### `inventario`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `tienda_id` | PK, FK | `tienda.id` |
+| `isbn` | PK, FK | `libro.isbn` |
+| `stock` | | |
+| `fecha_ultimo_conteo` | | |
+
+### `empleado`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `dni` | PK | |
+| `nombre` | | |
+| `apellidos` | | |
+| `cargo` | | |
+| `fecha_contratacion` | | |
+| `email_trabajo` | | |
+| `tienda_id` | FK | `tienda.id` |
+
+### `cliente`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `id` | PK | |
+| `nombre_completo` | | |
+| `email` | | |
+| `telefono` | | |
+| `fecha_alta` | | |
+
+### `pedido`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `id` | PK | |
+| `fecha` | | |
+| `metodo_pago` | | |
+| `estado` | | |
+| `tienda_id` | FK | `tienda.id` |
+| `empleado_dni` | FK | `empleado.dni` |
+| `cliente_id` | FK | `cliente.id` |
+
+### `detalle_pedido`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `pedido_id` | PK, FK | `pedido.id` |
+| `isbn` | PK, FK | `libro.isbn` |
+| `cantidad` | | |
+| `precio_pagado` | | |
+
+---
