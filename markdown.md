@@ -31,24 +31,24 @@ Fragmento del caso:  De cada autor guardamos el nombre, la nacionalidad y el añ
 
 **Inventario**
 Atributos: tienda, libro, stock y fecha del ultimo conteo.
-Fragmento del caso para cada libro y cada tienda sepa cuantas copias hay, y cuando se contó por ultima vez.
+Fragmento del caso: Para cada libro y cada tienda sepa cuantas copias hay, y cuando se contó por ultima vez.
 
 **Empleado**
 Atributos: DNI, nombre, apellidos, cargo, fecha de contratación, correo y tienda.
-Fragmento del caso  cada empleado trabaja en una sola tienda, y se indican sus datos.
+Fragmento del caso: De cada empleado trabaja en una sola tienda, y se indican sus datos.
 
 **Cliente**
 Atributos: id, nombre completo, email, telefono y fecha de alta.
-Fragmento del caso datos de socios y clientes registrados.
+Fragmento del caso: Datos de socios y clientes registrados.
 
 **Pedido**
 Atributos: id, fecha, metodo de pago, estado, tienda, empleado y cliente.
-Fragmento del caso Un pedido se hace siempre en una tienda, lo atiende un empleado y lo compra un cliente.
+Fragmento del caso: Un pedido se hace siempre en una tienda, lo atiende un empleado y lo compra un cliente.
 
 **Detalle de pedido**
 Atributos: pedido, libro, cantidad y precio pagado.
-Fragmento del caso Cada pedido puede llevar varios libros distintos, y se necesita guardar lo realmente cobrado.
+Fragmento del caso: Cada pedido puede llevar varios libros distintos, y se necesita guardar lo realmente cobrado.
 
 **Libro Autor**
 Atributos: libro, autor y tipo de autoría.
-Fragmento del caso un libro puede tener varios autores y se distingue entre principal y colaborador.
+Fragmento del caso: Un libro puede tener varios autores y se distingue entre principal y colaborador.
