@@ -55,6 +55,7 @@ Atributos: libro, autor y tipo de autoría.
 Fragmento del caso: Un libro puede tener varios autores y se distingue entre principal y colaborador.
 
 ### 2.2 Datos descartados
+
 **Total del pedido**
 Decision: No se almacena.
 Motivo: Se puede calcular sumando cantidad * precio_pagado de sus lineas.
@@ -108,7 +109,6 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 19. Cada linea de pedido conserva el precio realmente pagado.
 20. El precio pagado no puede estar en negativo.
 
-
 ## 4. Diagrama entidad-relación
 
 ![Diagrama](erdEsquema.png)
@@ -128,7 +128,6 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 | `pedido` – `libro` | N:M | Tabla `detalle_pedido` |
 
 ---
-
 
 ## 5. Modelo lógico
 
