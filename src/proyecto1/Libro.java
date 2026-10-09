@@ -50,7 +50,7 @@ public class Libro {
      * @param precio precio del libro
      * @param stock cantidad de copias disponibles
      */
-    
+  
     public Libro(String id, String titulo, String autor, double precio, int stock) {
         this.id = id;
         this.titulo = titulo;
