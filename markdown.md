@@ -231,3 +231,52 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 | `precio_pagado` | | |
 
 ---
+
+## 7. Diccionario de datos
+
+### `tienda`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| id | INT | Sí | Identificador único de la tienda. |
+| nombre | VARCHAR(50) | Sí | Nombre de la tienda. No puede repetirse. |
+| direccion | VARCHAR(150) | Sí | Dirección física. |
+| telefono | VARCHAR(20) | Sí | Teléfono de la tienda. |
+| ciudad | VARCHAR(80) | Sí | Ciudad donde se encuentra. |
+
+### `editorial`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| id | INT | Sí | Identificador único de la editorial. |
+| nombre | VARCHAR(120) | Sí | Nombre de la editorial. No puede repetirse. |
+| pais | VARCHAR(80) | Sí | País de la editorial. |
+| telefono_contacto | VARCHAR(20) | Sí | Teléfono usado para contactar con la editorial. |
+
+### `autor`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| id | INT | Sí | Identificador único del autor. |
+| nombre | VARCHAR(120) | Sí | Nombre completo del autor. |
+| nacionalidad | VARCHAR(80) | Sí | Nacionalidad del autor. |
+| anio_nacimiento | SMALLINT | Sí | Año de nacimiento. |
+
+### `libro`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| isbn | CHAR(13) | Sí | ISBN de 13 cifras que identifica el libro. |
+| titulo | VARCHAR(200) | Sí | Título del libro. |
+| anio_publicacion | SMALLINT | Sí | Año de publicación. |
+| paginas | INT | Sí | Número de páginas, mayor que cero. |
+| precio_catalogo | DECIMAL(10,2) | Sí | Precio actual de catálogo en euros. |
+| editorial_id | INT | Sí | Editorial que publica el libro. FK a editorial. |
+
+### `libro_autor`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| isbn | CHAR(13) | Sí | Libro relacionado. Parte de la PK y FK. |
+| autor_id | INT | Sí | Autor relacionado. Parte de la PK y FK. |
+| tipo_autoria | ENUM | Sí | Indica si el autor es principal o colaborador. |
