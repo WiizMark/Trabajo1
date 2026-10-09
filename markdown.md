@@ -52,3 +52,30 @@ Fragmento del caso: Cada pedido puede llevar varios libros distintos, y se neces
 **Libro Autor**
 Atributos: libro, autor y tipo de autoría.
 Fragmento del caso: Un libro puede tener varios autores y se distingue entre principal y colaborador.
+
+---
+
+## 3. Reglas de negocio
+
+1. Una tienda tiene un nombre, una dirección, un telefono y la ciudad.
+2. Un libro se identifica mediante el ISBN, tiene 13 cifras.
+3. Cada libro pertenece a una unica editorial.
+4. Una editorial puede publicar muchos libros.
+5. Un libro puede tener varios autores y un autor puede participar en muchos libros.
+6. Para cada relación libro autor se debe indicar si el autor es principal o colaborador.
+7. El inventario se controla por una combinación de tienda y libro.
+8. Si un libro no esta presente en una tienda, no es hace falta crear una fila de inventario para esa combinación.
+9. El stock nunca estara en negativo.
+10. Cada empleado trabajara en una sola tienda.
+11. El cargo de un empleado solo puede ser librero, cajero o encargado.
+12. El correo electronico de cada cliente es unico.
+13. El telefono del cliente es opcional.
+14. Cada pedido pertenece a una unica tienda, lo atiende un unico empleado y pertenece a un unico cliente.
+15. El metodo de pago solo puede ser efectivo, tarjeta o bizum.
+16. El estado de un pedido solo puede ser preparado, entregado o cancelado.
+17. Cada pedido debe tener libros distintos en sus lineas.
+18. La cantidad de cada linea debe ser mayor que cero.
+19. Cada linea de pedido conserva el precio realmente pagado.
+20. El precio pagado no puede estar en negativo.
+
+---
