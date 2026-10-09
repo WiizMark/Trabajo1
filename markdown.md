@@ -52,3 +52,38 @@ Fragmento del caso: Cada pedido puede llevar varios libros distintos, y se neces
 **Libro Autor**
 Atributos: libro, autor y tipo de autoría.
 Fragmento del caso: Un libro puede tener varios autores y se distingue entre principal y colaborador.
+
+### 2.2 Relaciones
+
+![Esquema](C:\Users\2DAM\Documents\NetBeansProjects\Trabajo1\erdEsquema.png)
+
+### 2.3 Datos descartados
+**Total del pedido**
+Decision: No se almacena.
+Motivo: Se puede calcular sumando cantidad * precio_pagado de sus lineas.
+
+**Telefono de la tienda dentro del pedido**
+Decision: No se repite.
+Motivo: El pedido ya referencia a la tienda y el telefono pertenece a ella.
+
+**Nombre del empleado dentro del pedido**
+Decision: No se repite.
+Motivo: Se obtiene con la FK empleado_dni.
+
+**Nombre del cliente dentro del pedido**
+Decision: No se repite.
+Motivo: Se obtiene xcon la FK cliente_id.
+
+**Stock en una columna del libro**
+Decision: No se almacena.
+Motivo: El stock depende de cada tienda y se guarda en inventario.
+
+**Precio actual como precio historico del pedido**
+Decision: No se utiliza.
+Motivo: El precio de catalogo puede cambiar, el pedido conserva precio_pagado.
+
+**Historial de cambios de tienda de un empleado**
+Decision: No se almacena.
+Motivo: El caso indica expresamente que no interesa conservar ese historial.
+
+---
