@@ -232,3 +232,17 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 | `precio_pagado` | | |
 
 ---
+## 6. Script SQL (`schema.sql`)
+
+El archivo `schema.sql` contiene la creación de la base de datos, las tablas, restricciones y datos de prueba.
+
+La estructura se crea en orden de dependencia: primero las entidades independientes y después las tablas que contienen claves foráneas.
+
+```sql
+CREATE DATABASE IF NOT EXISTS libreria;
+USE libreria;
+```
+
+El script completo se entrega junto a este documento como `schema.sql`.
+
+---
