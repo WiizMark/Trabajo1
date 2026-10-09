@@ -247,3 +247,21 @@ USE libreria;
 El script completo se entrega junto a este documento como `schema.sql`.
 
 ---
+
+## 8. Decisiones de diseño
+
+### 8.1 Guardar el precio pagado en `detalle_pedido`
+
+**Que se decidfo=** cada linea de pedido guarda `precio_pagado`.
+
+**Por que=** el precio de catlogo puede cambiar. El caso pone como ejemplo que Ficciones paso de 10 € a 12 €, por lo que un pedido antiguo debe conservar el importe.
+
+**Alternativa descartada=** consultar siempre `libro.precio_catalogo` para calcular el importe del pedido.
+
+### 8.2 Crear `libro_autor`
+
+**Que se decidio:** la relacion entre libros y autores se representa mediante una tabla intermedia.
+
+**Por que=** un libro puede tener dos o tres autores y un autor puede participar en muchos libros. Ademas, la relacion tiene los datos propio `tipo_autoria`.
+
+**Alternativa descartada:** almacenar varios autores en una sola columna de `libro`, por ejemplo `Cortazar / Borges`, porque dificultaria las busquedas y no permitiria distinguir correctamente la autoria.
