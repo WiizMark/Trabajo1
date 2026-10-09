@@ -401,4 +401,10 @@ El script completo se entrega junto a este documento como `schema.sql`.
 
 ---
 
+## 9. Datos de prueba
 
+Los datos de prueba incluyen 3 tiendas, 3 editoriales, 4 autores, 5 libros, relaciones con varios autores, inventario de las tres tiendas, 5 empleados, 4 clientes y 6 pedidos con varias lineas.
+Se han utilizado como referencia los datos proporcionados en la hoja de Universidad y el ticket del caso.
+El archivo schema.sql contiene todos los Insert en el orden correcto para respetar las claves foraneas.
+
+---
