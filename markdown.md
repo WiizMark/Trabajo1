@@ -9,6 +9,7 @@ La librería también necesita una base de datos central que permita almacenar l
 El sistema tiene que permitir consultar el stock por tienda, analizar las ventas, conocer la facturación, localizar clientes con frecuencia, comparar existencias entre tiendas, saber qué empleados atienden más pedidos y detectar los que aparecen publicados por distintas editoriales.
 
 ---
+
 ## 2. Analisis del caso
 
 ### 2.1 Entidades y atributos
@@ -84,7 +85,6 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 
 ---
 
-
 ## 3. Reglas de negocio
 
 1. Una tienda tiene un nombre, una dirección, un telefono y la ciudad.
@@ -108,3 +108,52 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 19. Cada linea de pedido conserva el precio realmente pagado.
 20. El precio pagado no puede estar en negativo.
 =======
+
+## 5. Modelo lógico
+
+### `tienda`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `id` | PK | |
+| `nombre` | | |
+| `direccion` | | |
+| `telefono` | | |
+| `ciudad` | | |
+
+### `editorial`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `id` | PK | |
+| `nombre` | | |
+| `pais` | | |
+| `telefono_contacto` | | |
+
+### `autor`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `id` | PK | |
+| `nombre` | | |
+| `nacionalidad` | | |
+| `anio_nacimiento` | | |
+
+### `libro`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `isbn` | PK | |
+| `titulo` | | |
+| `anio_publicacion` | | |
+| `paginas` | | |
+| `precio_catalogo` | | |
+| `editorial_id` | FK | `editorial.id` |
+
+### `libro_autor`
+
+| Columna | Clave | Referencia |
+|---|---|---|
+| `isbn` | PK, FK | `libro.isbn` |
+| `autor_id` | PK, FK | `autor.id` |
+| `tipo_autoria` | | |
