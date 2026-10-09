@@ -408,3 +408,16 @@ Se han utilizado como referencia los datos proporcionados en la hoja de Universi
 El archivo schema.sql contiene todos los Insert en el orden correcto para respetar las claves foraneas.
 
 ---
+
+
+## 11. Limitaciones y mejoras futuras
+
+- No se guarda el historial de cambios de la tienda de los empleados, por si en el futuro se necesitara, podria crearse una tabla de asignaciones historicas.
+- No se guarda el historial de cambios del precio de catalogo. Podria añadirse una tabla de precios con fecha de inicio y fin.
+- No se controla automaticamente que el empleado que atiende un pedido pertenezca a la tienda del pedido. Se podria añadir una validación mediante logica de aplicación o algunos mecanismos especificos de la base de datos.
+- No se almacenan datos especificos sobre la condición de socio. Podrian añadirse si la libreria necesitara gestionar promociones.
+- No se registran devoluciones de pedidos. En el futuro podria añadirse un sistema de devoluciones.
+- No se controla el stock automaticamente al insertar un pedido. Una aplicación podria actualizar el inventario al confirmar una venta.
+- El modelo registra clientes mediante nombre y email, pero no distingue si son socios. Si la condición de socio pasa a tener más información propia, seria más conveniente crear una estructura especifica para ella.
+
+
