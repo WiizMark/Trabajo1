@@ -233,7 +233,7 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 | precio_pagado | | |
 
 ---
-## 6. Script SQL (`schema.sql`)
+## 6. Script SQL (schema.sql)
 
 El archivo `schema.sql` contiene la creación de la base de datos, las tablas, restricciones y datos de prueba.
 
@@ -249,7 +249,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 ---
 ## 7. Diccionario de datos
 
-### `tienda`
+### tienda
 
 | Columna | Tipo | Obligatorio | Descripción |
 |---|---|:---:|---|
@@ -259,7 +259,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 | telefono | VARCHAR(20) | Sí | Teléfono de la tienda. |
 | ciudad | VARCHAR(80) | Sí | Ciudad donde se encuentra. |
 
-### `editorial`
+### editorial
 
 | Columna | Tipo | Obligatorio | Descripción |
 |---|---|:---:|---|
@@ -268,7 +268,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 | pais | VARCHAR(80) | Sí | País de la editorial. |
 | telefono_contacto | VARCHAR(20) | Sí | Teléfono usado para contactar con la editorial. |
 
-### `autor`
+### autor
 
 | Columna | Tipo | Obligatorio | Descripción |
 |---|---|:---:|---|
@@ -277,7 +277,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 | nacionalidad | VARCHAR(80) | Sí | Nacionalidad del autor. |
 | anio_nacimiento | SMALLINT | Sí | Año de nacimiento. |
 
-### `libro`
+### libro
 
 | Columna | Tipo | Obligatorio | Descripción |
 |---|---|:---:|---|
@@ -288,7 +288,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 | precio_catalogo | DECIMAL(10,2) | Sí | Precio actual de catálogo en euros. |
 | editorial_id | INT | Sí | Editorial que publica el libro. FK a editorial. |
 
-### `libro_autor`
+### libro_autor
 
 | Columna | Tipo | Obligatorio | Descripción |
 |---|---|:---:|---|
@@ -296,7 +296,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 | autor_id | INT | Sí | Autor relacionado. Parte de la PK y FK. |
 | tipo_autoria | ENUM | Sí | Indica si el autor es principal o colaborador. |
 
-### `inventario`
+### inventario
 
 | Columna | Tipo | Obligatorio | Descripción |
 |---|---|:---:|---|
@@ -305,7 +305,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 | stock | INT | Sí | Número de copias disponibles. No puede ser negativo. |
 | fecha_ultimo_conteo | DATE | Sí | Fecha del último recuento. |
 
-### `empleado`
+### empleado
 
 | Columna | Tipo | Obligatorio | Descripción |
 |---|---|:---:|---|
@@ -317,7 +317,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 | email_trabajo | VARCHAR(150) | Sí | Correo laboral único. |
 | tienda_id | INT | Sí | Tienda donde trabaja actualmente. |
 
-### `cliente`
+### cliente
 
 | Columna | Tipo | Obligatorio | Descripción |
 |---|---|:---:|---|
@@ -327,7 +327,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 | telefono | VARCHAR(20) | No | Teléfono, si el cliente lo proporciona. |
 | fecha_alta | DATE | Sí | Fecha en que se registra el cliente. |
 
-### `pedido`
+### pedido
 
 | Columna | Tipo | Obligatorio | Descripción |
 |---|---|:---:|---|
@@ -339,7 +339,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 | empleado_dni | VARCHAR(12) | Sí | Empleado que atiende el pedido. |
 | cliente_id | INT | Sí | Cliente que realiza el pedido. |
 
-### `detalle_pedido`
+### detalle_pedido
 
 | Columna | Tipo | Obligatorio | Descripción |
 |---|---|:---:|---|
@@ -352,7 +352,7 @@ El script completo se entrega junto a este documento como `schema.sql`.
 
 ## 8. Decisiones de diseño
 
-### 8.1 Guardar el precio pagado en `detalle_pedido`
+### 8.1 Guardar el precio pagado en detalle_pedido
 
 **Que se decidfo=** cada linea de pedido guarda `precio_pagado`.
 
@@ -360,11 +360,45 @@ El script completo se entrega junto a este documento como `schema.sql`.
 
 **Alternativa descartada=** consultar siempre `libro.precio_catalogo` para calcular el importe del pedido.
 
-### 8.2 Crear `libro_autor`
+### 8.2 Crear libro_autor
 
 **Que se decidio:** la relacion entre libros y autores se representa mediante una tabla intermedia.
 
 **Por que=** un libro puede tener dos o tres autores y un autor puede participar en muchos libros. Ademas, la relacion tiene los datos propio `tipo_autoria`.
 
 **Alternativa descartada:** almacenar varios autores en una sola columna de `libro`, por ejemplo `Cortazar / Borges`, porque dificultaria las busquedas y no permitiria distinguir correctamente la autoria.
+### 8.3 Crear inventario por tienda y libro
+
+**Que se decidio=** el stock se almacena en una tabla cuya clave primaria es la combinacion de `tienda_id` y `isbn`.
+
+**Por que=** un mismo libro puede tener cantidades diferentes en cada tienda.
+
+**Alternativa descartada=** guardar un unico campo `stock` en `libro`, porque no permitiria saber en que tienda estan las copias.
+
+### 8.4 No guardar el total del pedido
+
+**Que se decidio=** no crear una columna `total` en `pedido`.
+
+**Por que=** el total se obtiene sumando `cantidad * precio_pagado` de sus lineas. Al ser un dato derivado, se evita duplicar informacion.
+
+**Alternativa descartada=** guardar el total y actualizarlo cada vez que cambia una linea, porque podria provocar problemas.
+
+### 8.5 No guardar el historial de tiendas de los empleados
+
+**Que se decidio=** `empleado` contiene unicamente la tienda en la que trabaja actualmente.
+
+**Por que=** el caso indica que no interesa guardar el historial de cambios de tienda.
+
+**Alternativa descartada=** crear una tabla historica de asignaciones de empleados a tiendas.
+
+### 8.6 Usar DECIMAL(10,2) para los precios
+
+**Que se decidio=** los precios se almacenan con `DECIMAL(10,2)`.
+
+**Por que=** los importes monetarios necesitan conservar exactamente dos decimales.
+
+**Alternativa descartada=** usar tipos de coma flotante como `FLOAT`, que no son apropiados para representar importes monetarios con precision exacta.
+
+---
+
 
