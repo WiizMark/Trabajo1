@@ -107,8 +107,8 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 18. La cantidad de cada linea debe ser mayor que cero.
 19. Cada linea de pedido conserva el precio realmente pagado.
 20. El precio pagado no puede estar en negativo.
-=======
-<<<<<<< HEAD
+
+
 ## 4. Diagrama entidad-relación
 
 ![Diagrama](erdEsquema.png)
@@ -128,9 +128,8 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 | `pedido` – `libro` | N:M | Tabla `detalle_pedido` |
 
 ---
-=======
 
->>>>>>> 0b99bd479fd4525a17e54065c30a0dc2b8a58b5e
+
 ## 5. Modelo lógico
 
 ### `tienda`
@@ -179,7 +178,6 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 | `isbn` | PK, FK | `libro.isbn` |
 | `autor_id` | PK, FK | `autor.id` |
 | `tipo_autoria` | | |
-<<<<<<< HEAD
 
 ### `inventario`
 
@@ -234,5 +232,3 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 | `precio_pagado` | | |
 
 ---
-=======
->>>>>>> 0b99bd479fd4525a17e54065c30a0dc2b8a58b5e
