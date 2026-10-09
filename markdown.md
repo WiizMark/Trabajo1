@@ -283,7 +283,61 @@ Motivo: El caso indica expresamente que no interesa conservar ese historial.
 | isbn | CHAR(13) | Sí | Libro relacionado. Parte de la PK y FK. |
 | autor_id | INT | Sí | Autor relacionado. Parte de la PK y FK. |
 | tipo_autoria | ENUM | Sí | Indica si el autor es principal o colaborador. |
-=======
+
+### `inventario`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| tienda_id | INT | Sí | Tienda donde se cuenta el stock. |
+| isbn | CHAR(13) | Sí | Libro contado. |
+| stock | INT | Sí | Número de copias disponibles. No puede ser negativo. |
+| fecha_ultimo_conteo | DATE | Sí | Fecha del último recuento. |
+
+### `empleado`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| dni | VARCHAR(12) | Sí | Identificador del empleado. PK. |
+| nombre | VARCHAR(80) | Sí | Nombre del empleado. |
+| apellidos | VARCHAR(120) | Sí | Apellidos del empleado. |
+| cargo | ENUM | Sí | Librero, cajero o encargado. |
+| fecha_contratacion | DATE | Sí | Fecha de contratación. |
+| email_trabajo | VARCHAR(150) | Sí | Correo laboral único. |
+| tienda_id | INT | Sí | Tienda donde trabaja actualmente. |
+
+### `cliente`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| id | INT | Sí | Identificador interno del cliente. |
+| nombre_completo | VARCHAR(150) | Sí | Nombre completo. |
+| email | VARCHAR(150) | Sí | Correo único del cliente. |
+| telefono | VARCHAR(20) | No | Teléfono, si el cliente lo proporciona. |
+| fecha_alta | DATE | Sí | Fecha en que se registra el cliente. |
+
+### `pedido`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| id | INT | Sí | Identificador del pedido. |
+| fecha | DATETIME | Sí | Fecha y hora del pedido. |
+| metodo_pago | ENUM | Sí | Efectivo, tarjeta o bizum. |
+| estado | ENUM | Sí | Preparado, entregado o cancelado. |
+| tienda_id | INT | Sí | Tienda donde se realiza el pedido. |
+| empleado_dni | VARCHAR(12) | Sí | Empleado que atiende el pedido. |
+| cliente_id | INT | Sí | Cliente que realiza el pedido. |
+
+### `detalle_pedido`
+
+| Columna | Tipo | Obligatorio | Descripción |
+|---|---|:---:|---|
+| pedido_id | INT | Sí | Pedido al que pertenece la línea. |
+| isbn | CHAR(13) | Sí | Libro incluido en el pedido. |
+| cantidad | INT | Sí | Número de ejemplares. Debe ser mayor que cero. |
+| precio_pagado | DECIMAL(10,2) | Sí | Precio realmente cobrado por ejemplar en ese pedido. No puede ser negativo. |
+
+---
+
 ## 6. Script SQL (`schema.sql`)
 
 El archivo `schema.sql` contiene la creación de la base de datos, las tablas, restricciones y datos de prueba.
