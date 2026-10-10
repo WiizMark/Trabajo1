@@ -459,6 +459,66 @@ WHERE YEAR(p.fecha) = 2026
   AND p.estado = 'entregado'
 GROUP BY t.id, t.nombre
 ORDER BY t.nombre;
+```sql
+
+### 10.4 ¿Qué clientes han hecho más de dos pedidos?
+
+```sql
+SELECT
+    c.nombre_completo,
+    COUNT(p.id) AS numero_pedidos
+FROM cliente c
+JOIN pedido p ON p.cliente_id = c.id
+GROUP BY c.id, c.nombre_completo
+HAVING COUNT(p.id) > 2
+ORDER BY numero_pedidos DESC;
+```
+
+
+
+
+### 10.5 ¿Qué libros están agotados en una tienda pero disponibles en otra?
+
+```sql
+SELECT
+    l.titulo,
+    GROUP_CONCAT(
+        CASE WHEN i.stock = 0 THEN t.nombre END
+        ORDER BY t.nombre SEPARATOR ', '
+    ) AS agotado_en,
+    GROUP_CONCAT(
+        CASE WHEN i.stock > 0 THEN t.nombre END
+        ORDER BY t.nombre SEPARATOR ', '
+    ) AS disponible_en
+FROM libro l
+JOIN inventario i ON i.isbn = l.isbn
+JOIN tienda t ON t.id = i.tienda_id
+GROUP BY l.isbn, l.titulo
+HAVING SUM(i.stock = 0) > 0
+   AND SUM(i.stock > 0) > 0
+ORDER BY l.titulo;
+```
+
+
+
+### 10.6 ¿Qué empleado ha atendido más pedidos?
+
+```sql
+WITH conteo AS (
+    SELECT
+        e.dni,
+        e.nombre,
+        e.apellidos,
+        COUNT(p.id) AS pedidos_atendidos
+    FROM empleado e
+    JOIN pedido p ON p.empleado_dni = e.dni
+    GROUP BY e.dni, e.nombre, e.apellidos
+)
+SELECT nombre, apellidos, pedidos_atendidos
+FROM conteo
+WHERE pedidos_atendidos = (SELECT MAX(pedidos_atendidos) FROM conteo);
+```
+
 
 ---
 
