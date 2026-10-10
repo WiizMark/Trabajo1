@@ -520,6 +520,21 @@ WHERE pedidos_atendidos = (SELECT MAX(pedidos_atendidos) FROM conteo);
 ```
 
 
+### 10.7 ¿Qué autores tienen libros en más de una editorial?
+
+```sql
+SELECT
+    a.nombre,
+    COUNT(DISTINCT l.editorial_id) AS numero_editoriales
+FROM autor a
+JOIN libro_autor la ON la.autor_id = a.id
+JOIN libro l ON l.isbn = la.isbn
+GROUP BY a.id, a.nombre
+HAVING COUNT(DISTINCT l.editorial_id) > 1
+ORDER BY a.nombre;
+```
+
+
 ---
 
 
