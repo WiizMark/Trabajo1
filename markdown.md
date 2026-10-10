@@ -409,6 +409,59 @@ El archivo schema.sql contiene todos los Insert en el orden correcto para respet
 
 ---
 
+## 10. Consultas de prueba
+
+### 10.1 ¿Qué libros tiene la tienda Centro y cuántas copias quedan?
+
+```sql
+SELECT l.titulo, i.stock
+FROM inventario i
+JOIN libro l ON l.isbn = i.isbn
+JOIN tienda t ON t.id = i.tienda_id
+WHERE t.nombre = 'Centro'
+ORDER BY l.titulo;
+```
+
+### 10.2 ¿Cuál es el libro más vendido en cada tienda?
+
+```sql
+WITH ventas AS (
+    SELECT
+        t.nombre AS tienda,
+        l.titulo,
+        SUM(d.cantidad) AS unidades_vendidas,
+        RANK() OVER (
+            PARTITION BY t.id
+            ORDER BY SUM(d.cantidad) DESC
+        ) AS posicion
+    FROM pedido p
+    JOIN tienda t ON t.id = p.tienda_id
+    JOIN detalle_pedido d ON d.pedido_id = p.id
+    JOIN libro l ON l.isbn = d.isbn
+    WHERE p.estado <> 'cancelado'
+    GROUP BY t.id, t.nombre, l.isbn, l.titulo
+)
+SELECT tienda, titulo, unidades_vendidas
+FROM ventas
+WHERE posicion = 1
+ORDER BY tienda;
+```
+### 10.3 ¿Cuánto ha facturado cada tienda este año?
+
+```sql
+SELECT
+    t.nombre AS tienda,
+    ROUND(SUM(d.cantidad * d.precio_pagado), 2) AS facturacion
+FROM pedido p
+JOIN tienda t ON t.id = p.tienda_id
+JOIN detalle_pedido d ON d.pedido_id = p.id
+WHERE YEAR(p.fecha) = 2026
+  AND p.estado = 'entregado'
+GROUP BY t.id, t.nombre
+ORDER BY t.nombre;
+
+---
+
 
 ## 11. Limitaciones y mejoras futuras
 
